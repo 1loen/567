@@ -302,12 +302,13 @@
         .story-content {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             margin-bottom: 20px;
             padding: 20px;
             background: var(--bg-secondary);
             border-radius: 10px;
             min-height: 120px;
+            white-space: pre-wrap;
             word-wrap: break-word;
         }
 
@@ -468,209 +469,7 @@
             font-weight: 600;
             color: var(--accent-blue);
             font-size: 1.05rem;
-        }
-
-        /* ==================== NOTES ==================== */
-        .notes-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .notes-list-view {
-            display: block;
-        }
-
-        .notes-editor-view {
-            display: none;
-        }
-
-        .note-item {
-            padding: 18px;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--text-highlight);
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .note-item:hover {
-            background: var(--bg-hover);
-            transform: translateX(4px);
-        }
-
-        .note-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-            padding-right: 40px;
-        }
-
-        .note-item-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 1rem;
-            flex: 1;
-        }
-
-        .note-item-date {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace;
-            white-space: nowrap;
-        }
-
-        .note-item-preview {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .note-item-menu-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .note-item-menu-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            border-color: var(--text-highlight);
-        }
-
-        .note-menu-dropdown {
-            position: absolute;
-            top: 50px;
-            right: 12px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            z-index: 100;
-            min-width: 160px;
-            display: none;
-        }
-
-        .note-menu-dropdown.active {
-            display: block;
-            animation: fadeInUp 0.2s ease;
-        }
-
-        .note-menu-item {
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-            background: transparent;
-            width: 100%;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-
-        .note-menu-item:hover {
-            background: var(--bg-hover);
-        }
-
-        .note-menu-item.danger {
-            color: var(--error-color);
-        }
-
-        .note-menu-item.danger:hover {
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .notes-textarea {
-            width: 100%;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 20px;
-            border-radius: 14px;
-            font-size: 1rem;
-            min-height: 400px;
-            resize: vertical;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-
-        .notes-textarea:focus {
-            outline: none;
-            border-color: var(--text-highlight);
-            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
-        }
-
-        .notes-title-input {
-            width: 100%;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-        }
-
-        .notes-title-input:focus {
-            outline: none;
-            border-color: var(--text-highlight);
-            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
-        }
-
-        .notes-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            padding: 12px 16px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .char-count {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-        }
-
-        .char-count.warning {
-            color: var(--accent-yellow);
-        }
-
-        .char-count.error {
-            color: var(--error-color);
-        }
-
-        /* ==================== EMPTY STATES ==================== */
+        }/* ==================== EMPTY STATES ==================== */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -1682,9 +1481,6 @@
             <button class="tab active" onclick="switchTab('practice')">
                 <i class="fas fa-book-open"></i> Practice
             </button>
-            <button id="notesTab" class="tab" onclick="switchTab('notes')">
-                <i class="fas fa-sticky-note"></i> Notes
-            </button>
         </div>
 
         <!-- PRACTICE TAB -->
@@ -1803,279 +1599,36 @@
                 </div>
             </div>
         </div>
-
-        <!-- NOTES TAB -->
-        <div id="notesContent" style="display: none;">
-            <div class="panel fade-in-up">
-                <!-- List View -->
-                <div id="notesListView" class="notes-list-view">
-                    <div class="notes-header">
-                        <div class="panel-title" style="margin-bottom: 0;">
-                            <i class="fas fa-sticky-note"></i> My Notes
-                        </div>
-                        <button class="btn btn-primary" onclick="createNewNote()">
-                            <i class="fas fa-plus"></i> New
-                        </button>
-                    </div>
-                    <div id="notesList"></div>
-                </div>
-
-                <!-- Editor View -->
-                <div id="notesEditorView" class="notes-editor-view">
-                    <div class="notes-header">
-                        <div class="panel-title" style="margin-bottom: 0;">
-                            <i class="fas fa-edit"></i> <span id="editorTitle">New Note</span>
-                        </div>
-                        <button class="btn btn-secondary" onclick="backToNotesList()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                    </div>
-
-                    <input type="text" id="noteTitle" class="notes-title-input" placeholder="Tiêu đề ghi chú..."
-                        maxlength="100">
-
-                    <div class="notes-info">
-                        <span>
-                            <i class="fas fa-info-circle"></i>
-                            Tối đa 2000 ký tự
-                        </span>
-                        <span class="char-count" id="charCount">0 / 2000</span>
-                    </div>
-
-                    <textarea id="notesTextarea" class="notes-textarea" placeholder="✏️ Viết ghi chú của bạn tại đây..."
-                        maxlength="2000"></textarea>
-
-                    <div style="display: flex; gap: 12px;">
-                        <button class="btn btn-primary" style="flex: 1;" onclick="saveNote()">
-                            <i class="fas fa-save"></i> Lưu ghi chú
-                        </button>
-                        <button class="btn btn-secondary" onclick="backToNotesList()">
-                            <i class="fas fa-times"></i> Hủy
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div id="confirmModal" class="modal-overlay">
-        <div class="modal-content confirm-modal-content">
-            <button class="modal-close" onclick="closeConfirmModal()">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <div class="confirm-modal-icon">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-
-            <h3 style="margin-bottom: 12px; color: var(--text-primary);">Xác nhận xóa</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">
-                Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.
-            </p>
-
-            <div class="confirm-buttons">
-                <button class="btn btn-secondary" onclick="closeConfirmModal()" style="flex: 1;">
-                    <i class="fas fa-times"></i> Hủy
-                </button>
-                <button class="btn btn-danger" onclick="confirmDeleteNote()" style="flex: 1;">
-                    <i class="fas fa-trash"></i> Xóa
-                </button>
-            </div>
         </div>
     </div>
 
     <script src="https://js.puter.com/v2/"></script>
 
     <script>
-const LESSON_DATABASE = [
-    {
-        id: 1,
-        title: "1 – BÀI 1",
-        category: "1",
-        categoryId: "topic1",
-        filterTopic: "1",
-        preview: "Hôm nay trời nắng. Tôi thức dậy lúc 6 giờ sáng. Tôi đánh răng. Tôi rửa mặt. Tôi mặc quần áo sạch...",
-        isNew: true,
-        attempts: 0,
-        data: [
-            { vi: "Hôm nay trời nắng.", en_best: "Today it is sunny.", phrases: [{ en: "today", vi: "hôm nay" }, { en: "sunny", vi: "trời nắng" }] },
-            { vi: "Tôi thức dậy lúc 6 giờ sáng.", en_best: "I wake up at 6 am.", phrases: [{ en: "wake up", vi: "thức dậy" }, { en: "at 6 am", vi: "lúc 6 giờ sáng" }] },
-            { vi: "Tôi đánh răng.", en_best: "I brush my teeth.", phrases: [{ en: "brush", vi: "đánh" }, { en: "teeth", vi: "răng" }] },
-            { vi: "Tôi rửa mặt.", en_best: "I wash my face.", phrases: [{ en: "wash", vi: "rửa" }, { en: "face", vi: "mặt" }] },
-            { vi: "Tôi mặc quần áo sạch.", en_best: "I put on clean clothes.", phrases: [{ en: "put on", vi: "mặc vào" }, { en: "clean clothes", vi: "quần áo sạch" }] },
-            { vi: "Tôi ăn bánh mì với trứng.", en_best: "I eat bread with eggs.", phrases: [{ en: "bread", vi: "bánh mì" }, { en: "eggs", vi: "trứng" }] },
-            { vi: "Tôi uống một cốc nước.", en_best: "I drink a cup of water.", phrases: [{ en: "drink", vi: "uống" }, { en: "cup of water", vi: "cốc nước" }] },
-            { vi: "Tôi mang ba lô đi học.", en_best: "I take my backpack to school.", phrases: [{ en: "backpack", vi: "ba lô" }, { en: "to school", vi: "đi học" }] },
-            { vi: "Tôi ra khỏi nhà.", en_best: "I leave the house.", phrases: [{ en: "leave", vi: "rời khỏi" }, { en: "house", vi: "ngôi nhà" }] },
-            { vi: "Tôi chào mẹ.", en_best: "I say goodbye to my mom.", phrases: [{ en: "say goodbye", vi: "chào tạm biệt" }, { en: "mom", vi: "mẹ" }] },
-            { vi: "Tôi đi bộ ra bến xe buýt.", en_best: "I walk to the bus stop.", phrases: [{ en: "walk", vi: "đi bộ" }, { en: "bus stop", vi: "bến xe buýt" }] },
-            { vi: "Tôi đứng chờ xe buýt.", en_best: "I stand and wait for the bus.", phrases: [{ en: "wait for", vi: "chờ đợi" }, { en: "bus", vi: "xe buýt" }] },
-            { vi: "Tôi thấy bạn cùng lớp trên đường.", en_best: "I see my classmate on the street.", phrases: [{ en: "classmate", vi: "bạn cùng lớp" }, { en: "street", vi: "con đường" }] },
-            { vi: "Chúng tôi chào nhau.", en_best: "We greet each other.", phrases: [{ en: "greet", vi: "chào hỏi" }, { en: "each other", vi: "nhau" }] },
-            { vi: "Tôi lên xe buýt.", en_best: "I get on the bus.", phrases: [{ en: "get on", vi: "lên (xe)" }] },
-            { vi: "Tôi tìm chỗ ngồi.", en_best: "I find a seat.", phrases: [{ en: "find", vi: "tìm thấy" }, { en: "seat", vi: "chỗ ngồi" }] },
-            { vi: "Tôi nghe nhạc trên điện thoại.", en_best: "I listen to music on my phone.", phrases: [{ en: "listen to music", vi: "nghe nhạc" }, { en: "phone", vi: "điện thoại" }] },
-            { vi: "Tôi nhìn ra ngoài cửa sổ.", en_best: "I look out of the window.", phrases: [{ en: "look out", vi: "nhìn ra ngoài" }, { en: "window", vi: "cửa sổ" }] },
-            { vi: "Trời trong xanh.", en_best: "The sky is clear blue.", phrases: [{ en: "sky", vi: "bầu trời" }, { en: "clear blue", vi: "trong xanh" }] },
-            { vi: "Tôi cảm thấy vui.", en_best: "I feel happy.", phrases: [{ en: "feel", vi: "cảm thấy" }, { en: "happy", vi: "vui vẻ" }] },
-            { vi: "Tôi đến trường.", en_best: "I arrive at school.", phrases: [{ en: "arrive", vi: "đến nơi" }, { en: "school", vi: "trường học" }] },
-            { vi: "Tôi đi vào lớp học.", en_best: "I go into the classroom.", phrases: [{ en: "go into", vi: "đi vào" }, { en: "classroom", vi: "lớp học" }] },
-            { vi: "Tôi ngồi xuống bàn.", en_best: "I sit down at my desk.", phrases: [{ en: "sit down", vi: "ngồi xuống" }, { en: "desk", vi: "bàn làm việc/học" }] },
-            { vi: "Tôi lấy sách vở ra.", en_best: "I take out my books and notebooks.", phrases: [{ en: "take out", vi: "lấy ra" }, { en: "notebooks", vi: "vở ghi" }] },
-            { vi: "Giáo viên bắt đầu bài học.", en_best: "The teacher starts the lesson.", phrases: [{ en: "teacher", vi: "giáo viên" }, { en: "starts", vi: "bắt đầu" }] },
-            { vi: "Tôi nghe giáo viên giảng bài.", en_best: "I listen to the teacher's lecture.", phrases: [{ en: "lecture", vi: "bài giảng" }] },
-            { vi: "Tôi ghi chú vào vở.", en_best: "I take notes in my notebook.", phrases: [{ en: "take notes", vi: "ghi chú" }] },
-            { vi: "Tôi trả lời một câu hỏi của giáo viên.", en_best: "I answer a question from the teacher.", phrases: [{ en: "answer", vi: "trả lời" }, { en: "question", vi: "câu hỏi" }] },
-            { vi: "Tôi cảm thấy tự tin.", en_best: "I feel confident.", phrases: [{ en: "confident", vi: "tự tin" }] },
-            { vi: "Tiết học kết thúc.", en_best: "The class period ends.", phrases: [{ en: "class period", vi: "tiết học" }, { en: "ends", vi: "kết thúc" }] },
-            { vi: "Tôi đi ra sân trường.", en_best: "I go out to the schoolyard.", phrases: [{ en: "schoolyard", vi: "sân trường" }] },
-            { vi: "Tôi gặp bạn bè.", en_best: "I meet my friends.", phrases: [{ en: "meet", vi: "gặp gỡ" }, { en: "friends", vi: "bạn bè" }] },
-            { vi: "Chúng tôi trò chuyện vui vẻ.", en_best: "We chat happily.", phrases: [{ en: "chat", vi: "trò chuyện" }, { en: "happily", vi: "vui vẻ" }] },
-            { vi: "Chúng tôi ăn trưa cùng nhau.", en_best: "We eat lunch together.", phrases: [{ en: "eat lunch", vi: "ăn trưa" }, { en: "together", vi: "cùng nhau" }] },
-            { vi: "Tôi uống nước.", en_best: "I drink water.", phrases: [{ en: "drink", vi: "uống" }, { en: "water", vi: "nước" }] },
-            { vi: "Tôi đi dạo quanh sân trường.", en_best: "I take a walk around the schoolyard.", phrases: [{ en: "take a walk", vi: "đi dạo" }] },
-            { vi: "Tôi nhìn thấy cây cối xanh tươi.", en_best: "I see the lush green trees.", phrases: [{ en: "lush green", vi: "xanh tươi" }, { en: "trees", vi: "cây cối" }] },
-            { vi: "Tôi nghe tiếng chim hót.", en_best: "I hear the birds singing.", phrases: [{ en: "birds", vi: "những con chim" }, { en: "singing", vi: "đang hót" }] },
-            { vi: "Tôi ngồi nghỉ một lúc.", en_best: "I sit down and rest for a while.", phrases: [{ en: "rest", vi: "nghỉ ngơi" }, { en: "for a while", vi: "một lúc" }] },
-            { vi: "Tôi cảm thấy thư giãn.", en_best: "I feel relaxed.", phrases: [{ en: "relaxed", vi: "thư giãn" }] },
-            { vi: "Tiết học buổi chiều bắt đầu.", en_best: "The afternoon class starts.", phrases: [{ en: "afternoon", vi: "buổi chiều" }] },
-            { vi: "Tôi học môn Toán.", en_best: "I study math.", phrases: [{ en: "study", vi: "học" }, { en: "math", vi: "môn toán" }] },
-            { vi: "Tôi làm bài tập trên giấy.", en_best: "I do exercises on paper.", phrases: [{ en: "do exercises", vi: "làm bài tập" }] },
-            { vi: "Tôi hỏi giáo viên một câu.", en_best: "I ask the teacher a question.", phrases: [{ en: "ask", vi: "hỏi" }] },
-            { vi: "Tôi nhận được câu trả lời.", en_best: "I receive an answer.", phrases: [{ en: "receive", vi: "nhận được" }] },
-            { vi: "Tôi cảm thấy hài lòng.", en_best: "I feel satisfied.", phrases: [{ en: "satisfied", vi: "hài lòng" }] },
-            { vi: "Tiết học kết thúc.", en_best: "The class period ends.", phrases: [{ en: "ends", vi: "kết thúc" }] },
-            { vi: "Tôi đi về nhà.", en_best: "I go home.", phrases: [{ en: "go home", vi: "về nhà" }] },
-            { vi: "Tôi ăn tối với gia đình.", en_best: "I eat dinner with my family.", phrases: [{ en: "eat dinner", vi: "ăn tối" }, { en: "family", vi: "gia đình" }] },
-            { vi: "Tôi đi ngủ lúc 10 giờ tối.", en_best: "I go to bed at 10 pm.", phrases: [{ en: "go to bed", vi: "đi ngủ" }] }
-        ]
-    },
-    {
-        id: 2,
-        title: "1 – BÀI 2",
-        category: "1",
-        categoryId: "topic1",
-        filterTopic: "1",
-        preview: "Hôm nay tôi đi công viên. Tôi mang theo một chai nước. Tôi mặc quần áo thể thao. Tôi đi bộ quanh công viên...",
-        isNew: true,
-        attempts: 0,
-        data: [
-            { vi: "Hôm nay tôi đi công viên.", en_best: "Today I go to the park.", phrases: [{ en: "park", vi: "công viên" }] },
-            { vi: "Tôi mang theo một chai nước.", en_best: "I bring along a bottle of water.", phrases: [{ en: "bring along", vi: "mang theo" }, { en: "bottle of water", vi: "chai nước" }] },
-            { vi: "Tôi mặc quần áo thể thao.", en_best: "I wear sports clothes.", phrases: [{ en: "wear", vi: "mặc" }, { en: "sports clothes", vi: "quần áo thể thao" }] },
-            { vi: "Tôi đi bộ quanh công viên.", en_best: "I walk around the park.", phrases: [{ en: "walk around", vi: "đi bộ quanh" }] },
-            { vi: "Tôi nhìn thấy nhiều cây xanh.", en_best: "I see many green trees.", phrases: [{ en: "green trees", vi: "nhiều cây xanh" }] },
-            { vi: "Không khí rất trong lành.", en_best: "The air is very fresh.", phrases: [{ en: "air", vi: "không khí" }, { en: "fresh", vi: "trong lành" }] },
-            { vi: "Tôi hít thở sâu.", en_best: "I take a deep breath.", phrases: [{ en: "take a deep breath", vi: "hít thở sâu" }] },
-            { vi: "Tôi cảm thấy khỏe mạnh.", en_best: "I feel healthy.", phrases: [{ en: "healthy", vi: "khỏe mạnh" }] },
-            { vi: "Tôi thấy một con chó đang chạy.", en_best: "I see a dog running.", phrases: [{ en: "dog running", vi: "con chó đang chạy" }] },
-            { vi: "Chủ của nó đang cười.", en_best: "Its owner is laughing.", phrases: [{ en: "owner", vi: "chủ nhân" }, { en: "laughing", vi: "đang cười" }] },
-            { vi: "Một cậu bé đang chơi bóng.", en_best: "A boy is playing with a ball.", phrases: [{ en: "playing with a ball", vi: "đang chơi bóng" }] },
-            { vi: "Cậu bé trông rất vui.", en_best: "The boy looks very happy.", phrases: [{ en: "looks", vi: "trông có vẻ" }] },
-            { vi: "Tôi ngồi xuống một chiếc ghế.", en_best: "I sit down on a bench.", phrases: [{ en: "bench", vi: "ghế dài (công viên)" }] },
-            { vi: "Tôi uống nước.", en_best: "I drink water.", phrases: [{ en: "drink water", vi: "uống nước" }] },
-            { vi: "Tôi nhìn bầu trời xanh.", en_best: "I look at the blue sky.", phrases: [{ en: "blue sky", vi: "bầu trời xanh" }] },
-            { vi: "Tôi nghe tiếng chim hót.", en_best: "I hear the birds singing.", phrases: [{ en: "hear", vi: "nghe thấy" }] },
-            { vi: "Tôi cảm thấy bình yên.", en_best: "I feel peaceful.", phrases: [{ en: "peaceful", vi: "bình yên" }] },
-            { vi: "Tôi đọc một cuốn sách nhỏ.", en_best: "I read a small book.", phrases: [{ en: "read", vi: "đọc" }, { en: "small book", vi: "cuốn sách nhỏ" }] },
-            { vi: "Tôi viết vài dòng vào điện thoại.", en_best: "I write a few lines on my phone.", phrases: [{ en: "write", vi: "viết" }, { en: "few lines", vi: "vài dòng" }] },
-            { vi: "Tôi chụp một bức ảnh.", en_best: "I take a photo.", phrases: [{ en: "take a photo", vi: "chụp ảnh" }] },
-            { vi: "Tôi thấy một người đang chạy bộ.", en_best: "I see someone jogging.", phrases: [{ en: "jogging", vi: "chạy bộ" }] },
-            { vi: "Một người phụ nữ đang tập yoga.", en_best: "A woman is practicing yoga.", phrases: [{ en: "practicing yoga", vi: "đang tập yoga" }] },
-            { vi: "Tôi mỉm cười khi nhìn họ.", en_best: "I smile when I look at them.", phrases: [{ en: "smile", vi: "mỉm cười" }] },
-            { vi: "Tôi đi bộ thêm một vòng nữa.", en_best: "I walk one more lap.", phrases: [{ en: "one more lap", vi: "thêm một vòng nữa" }] },
-            { vi: "Tôi kiểm tra đồng hồ.", en_best: "I check my watch.", phrases: [{ en: "check", vi: "kiểm tra" }, { en: "watch", vi: "đồng hồ" }] },
-            { vi: "Đã 8 giờ sáng.", en_best: "It is already 8 am.", phrases: [{ en: "already", vi: "đã... rồi" }] },
-            { vi: "Tôi quyết định về nhà.", en_best: "I decide to go home.", phrases: [{ en: "decide", vi: "quyết định" }] },
-            { vi: "Tôi rời khỏi công viên.", en_best: "I leave the park.", phrases: [{ en: "leave", vi: "rời khỏi" }] },
-            { vi: "Tôi đi bộ về nhà.", en_best: "I walk back home.", phrases: [{ en: "walk back", vi: "đi bộ về" }] },
-            { vi: "Tôi cảm thấy thoải mái.", en_best: "I feel comfortable.", phrases: [{ en: "comfortable", vi: "thoải mái" }] },
-            { vi: "Tôi tắm sau khi về nhà.", en_best: "I take a shower after coming home.", phrases: [{ en: "take a shower", vi: "đi tắm" }] },
-            { vi: "Tôi thay quần áo sạch.", en_best: "I change into clean clothes.", phrases: [{ en: "change into", vi: "thay (quần áo)" }] },
-            { vi: "Tôi ăn sáng.", en_best: "I eat breakfast.", phrases: [{ en: "eat breakfast", vi: "ăn sáng" }] },
-            { vi: "Tôi uống một cốc sữa.", en_best: "I drink a glass of milk.", phrases: [{ en: "glass of milk", vi: "cốc sữa" }] },
-            { vi: "Tôi kiểm tra điện thoại.", en_best: "I check my phone.", phrases: [{ en: "check phone", vi: "kiểm tra điện thoại" }] },
-            { vi: "Tôi trả lời tin nhắn của bạn.", en_best: "I reply to my friend's message.", phrases: [{ en: "reply", vi: "trả lời" }, { en: "message", vi: "tin nhắn" }] },
-            { vi: "Tôi chuẩn bị đi học.", en_best: "I get ready for school.", phrases: [{ en: "get ready", vi: "chuẩn bị" }, { en: "for school", vi: "để đi học" }] },
-            { vi: "Tôi mang theo ba lô.", en_best: "I bring my backpack.", phrases: [{ en: "bring", vi: "mang theo" }] },
-            { vi: "Tôi khóa cửa nhà.", en_best: "I lock the house door.", phrases: [{ en: "lock", vi: "khóa" }, { en: "door", vi: "cửa" }] },
-            { vi: "Tôi bước ra ngoài.", en_best: "I step outside.", phrases: [{ en: "step outside", vi: "bước ra ngoài" }] },
-            { vi: "Tôi chào hàng xóm.", en_best: "I greet the neighbors.", phrases: [{ en: "greet", vi: "chào hỏi" }, { en: "neighbors", vi: "hàng xóm" }] },
-            { vi: "Tôi đi ra bến xe buýt.", en_best: "I go to the bus stop.", phrases: [{ en: "bus stop", vi: "điểm dừng xe buýt" }] },
-            { vi: "Tôi đứng chờ xe.", en_best: "I stand and wait for the bus.", phrases: [{ en: "wait", vi: "chờ đợi" }] },
-            { vi: "Tôi nhìn đồng hồ lần nữa.", en_best: "I look at my watch again.", phrases: [{ en: "again", vi: "lại một lần nữa" }] },
-            { vi: "Xe buýt đến đúng giờ.", en_best: "The bus arrives on time.", phrases: [{ en: "arrives", vi: "đến nơi" }, { en: "on time", vi: "đúng giờ" }] },
-            { vi: "Tôi lên xe.", en_best: "I get on the bus.", phrases: [{ en: "get on", vi: "lên xe" }] },
-            { vi: "Tôi tìm chỗ ngồi.", en_best: "I find a seat.", phrases: [{ en: "find a seat", vi: "tìm chỗ ngồi" }] },
-            { vi: "Tôi nghe nhạc.", en_best: "I listen to music.", phrases: [{ en: "listen", vi: "lắng nghe" }] },
-            { vi: "Tôi cảm thấy sẵn sàng cho ngày mới.", en_best: "I feel ready for the new day.", phrases: [{ en: "ready", vi: "sẵn sàng" }, { en: "new day", vi: "ngày mới" }] },
-            { vi: "Tôi mỉm cười.", en_best: "I smile.", phrases: [{ en: "smile", vi: "mỉm cười" }] }
-        ]
-    },
-    {
-        id: 3,
-        title: "1 – BÀI 3",
-        category: "1",
-        categoryId: "topic1",
-        filterTopic: "1",
-        preview: "Tôi sống cùng gia đình. Gia đình tôi có bốn người. Bố tôi rất chăm chỉ. Mẹ tôi rất hiền. Anh trai tôi thích chơi thể thao...",
-        isNew: true,
-        attempts: 0,
-        data: [
-            { vi: "Tôi sống cùng gia đình.", en_best: "I live with my family.", phrases: [{ en: "live with", vi: "sống cùng" }, { en: "family", vi: "gia đình" }] },
-            { vi: "Gia đình tôi có bốn người.", en_best: "There are four people in my family.", phrases: [{ en: "four people", vi: "bốn người" }] },
-            { vi: "Bố tôi rất chăm chỉ.", en_best: "My father is very hardworking.", phrases: [{ en: "hardworking", vi: "chăm chỉ" }] },
-            { vi: "Mẹ tôi rất hiền.", en_best: "My mother is very gentle.", phrases: [{ en: "gentle", vi: "hiền lành/dịu dàng" }] },
-            { vi: "Anh trai tôi thích chơi thể thao.", en_best: "My older brother likes to play sports.", phrases: [{ en: "older brother", vi: "anh trai" }, { en: "play sports", vi: "chơi thể thao" }] },
-            { vi: "Tôi yêu gia đình mình.", en_best: "I love my family.", phrases: [{ en: "love", vi: "yêu thương" }] },
-            { vi: "Chúng tôi ăn sáng cùng nhau.", en_best: "We eat breakfast together.", phrases: [{ en: "together", vi: "cùng nhau" }] },
-            { vi: "Chúng tôi nói chuyện vào buổi tối.", en_best: "We talk in the evening.", phrases: [{ en: "talk", vi: "nói chuyện" }, { en: "evening", vi: "buổi tối" }] },
-            { vi: "Tôi giúp mẹ rửa bát.", en_best: "I help my mom wash the dishes.", phrases: [{ en: "wash the dishes", vi: "rửa bát" }] },
-            { vi: "Bố tôi thường nấu ăn cuối tuần.", en_best: "My dad usually cooks on the weekend.", phrases: [{ en: "on the weekend", vi: "vào cuối tuần" }] },
-            { vi: "Chúng tôi xem phim cùng nhau.", en_best: "We watch movies together.", phrases: [{ en: "watch movies", vi: "xem phim" }] },
-            { vi: "Chúng tôi cười rất nhiều.", en_best: "We laugh a lot.", phrases: [{ en: "laugh a lot", vi: "cười rất nhiều" }] },
-            { vi: "Tôi cảm thấy hạnh phúc khi ở nhà.", en_best: "I feel happy when I am at home.", phrases: [{ en: "at home", vi: "ở nhà" }] },
-            { vi: "Mẹ tôi hỏi về ngày của tôi.", en_best: "My mom asks about my day.", phrases: [{ en: "ask about", vi: "hỏi về" }] },
-            { vi: "Tôi kể cho mẹ nghe mọi chuyện.", en_best: "I tell my mom everything.", phrases: [{ en: "tell", vi: "kể cho nghe" }, { en: "everything", vi: "mọi chuyện" }] },
-            { vi: "Bố tôi cho tôi lời khuyên.", en_best: "My dad gives me advice.", phrases: [{ en: "gives advice", vi: "cho lời khuyên" }] },
-            { vi: "Anh trai tôi giúp tôi học Toán.", en_best: "My older brother helps me study math.", phrases: [{ en: "study math", vi: "học toán" }] },
-            { vi: "Tôi giúp anh trai học tiếng Anh.", en_best: "I help my brother study English.", phrases: [{ en: "study English", vi: "học tiếng anh" }] },
-            { vi: "Chúng tôi tôn trọng nhau.", en_best: "We respect each other.", phrases: [{ en: "respect", vi: "tôn trọng" }, { en: "each other", vi: "lẫn nhau" }] },
-            { vi: "Chúng tôi luôn ủng hộ nhau.", en_best: "We always support each other.", phrases: [{ en: "always support", vi: "luôn ủng hộ" }] },
-            { vi: "Gia đình tôi thích đi du lịch.", en_best: "My family likes to travel.", phrases: [{ en: "travel", vi: "đi du lịch" }] },
-            { vi: "Chúng tôi đi biển vào mùa hè.", en_best: "We go to the beach in the summer.", phrases: [{ en: "go to the beach", vi: "đi biển" }, { en: "summer", vi: "mùa hè" }] },
-            { vi: "Chúng tôi chụp nhiều ảnh.", en_best: "We take many photos.", phrases: [{ en: "take many photos", vi: "chụp nhiều ảnh" }] },
-            { vi: "Chúng tôi ăn tối ở nhà hàng.", en_best: "We eat dinner at a restaurant.", phrases: [{ en: "restaurant", vi: "nhà hàng" }] },
-            { vi: "Tôi nhớ những chuyến đi đó.", en_best: "I remember those trips.", phrases: [{ en: "remember", vi: "nhớ" }, { en: "trips", vi: "những chuyến đi" }] },
-            { vi: "Cuối tuần chúng tôi dọn dẹp nhà cửa.", en_best: "On the weekend we clean the house.", phrases: [{ en: "clean the house", vi: "dọn dẹp nhà cửa" }] },
-            { vi: "Tôi lau bàn.", en_best: "I wipe the table.", phrases: [{ en: "wipe the table", vi: "lau bàn" }] },
-            { vi: "Anh trai tôi quét nhà.", en_best: "My brother sweeps the floor.", phrases: [{ en: "sweeps the floor", vi: "quét nhà/sàn nhà" }] },
-            { vi: "Mẹ tôi nấu ăn.", en_best: "My mother cooks.", phrases: [{ en: "cook", vi: "nấu ăn" }] },
-            { vi: "Bố tôi sửa đồ trong nhà.", en_best: "My dad fixes things around the house.", phrases: [{ en: "fixes things", vi: "sửa đồ" }] },
-            { vi: "Chúng tôi làm việc cùng nhau.", en_best: "We work together.", phrases: [{ en: "work together", vi: "làm việc cùng nhau" }] },
-            { vi: "Sau đó chúng tôi nghỉ ngơi.", en_best: "Then we rest.", phrases: [{ en: "rest", vi: "nghỉ ngơi" }] },
-            { vi: "Chúng tôi uống trà.", en_best: "We drink tea.", phrases: [{ en: "drink tea", vi: "uống trà" }] },
-            { vi: "Chúng tôi nói về tương lai.", en_best: "We talk about the future.", phrases: [{ en: "talk about", vi: "nói về" }, { en: "future", vi: "tương lai" }] },
-            { vi: "Tôi muốn làm gia đình tự hào.", en_best: "I want to make my family proud.", phrases: [{ en: "proud of", vi: "ngoài hào về" }] },
-            { vi: "Tôi cố gắng học chăm chỉ.", en_best: "I try to study hard.", phrases: [{ en: "try to", vi: "cố gắng" }, { en: "study hard", vi: "học chăm chỉ" }] },
-            { vi: "Gia đình là điều quan trọng nhất với tôi.", en_best: "Family is the most important thing to me.", phrases: [{ en: "important", vi: "quan trọng" }] },
-            { vi: "Tôi luôn biết ơn bố mẹ.", en_best: "I am always grateful to my parents.", phrases: [{ en: "grateful", vi: "biết ơn" }, { en: "parents", vi: "bố mẹ" }] },
-            { vi: "Tôi cảm thấy may mắn.", en_best: "I feel lucky.", phrases: [{ en: "lucky", vi: "may mắn" }] },
-            { vi: "Tôi yêu gia đình của mình.", en_best: "I love my family.", phrases: [{ en: "love", vi: "yêu thương" }] },
-            { vi: "Gia đình cho tôi sức mạnh.", en_best: "Family gives me strength.", phrases: [{ en: "strength", vi: "sức mạnh" }] },
-            { vi: "Gia đình giúp tôi trưởng thành.", en_best: "Family helps me grow up.", phrases: [{ en: "grow up", vi: "trưởng thành" }] },
-            { vi: "Gia đình là nơi tôi thuộc về.", en_best: "Family is where I belong.", phrases: [{ en: "where I belong", vi: "nơi tôi thuộc về" }] },
-            { vi: "Tôi luôn muốn về nhà sau một ngày dài.", en_best: "I always want to come home after a long day.", phrases: [{ en: "long day", vi: "ngày dài" }] },
-            { vi: "Tôi cảm thấy an toàn ở nhà.", en_best: "I feel safe at home.", phrases: [{ en: "safe", vi: "an toàn" }] },
-            { vi: "Gia đình làm tôi mỉm cười.", en_best: "My family makes me smile.", phrases: [{ en: "make smile", vi: "làm mỉm cười" }] },
-            { vi: "Tôi trân trọng từng khoảnh khắc.", en_best: "I cherish every moment.", phrases: [{ en: "cherish", vi: "trân trọng" }, { en: "every moment", vi: "từng khoảnh khắc" }] },
-            { vi: "Tôi muốn dành nhiều thời gian với gia đình.", en_best: "I want to spend more time with my family.", phrases: [{ en: "spend time", vi: "dành thời gian" }] },
-            { vi: "Gia đình là điều quý giá.", en_best: "Family is a precious thing.", phrases: [{ en: "precious", vi: "quý giá" }] },
-            { vi: "Tôi sẽ luôn yêu gia đình mình.", en_best: "I will always love my family.", phrases: [{ en: "always", vi: "luôn luôn" }] }
-        ]
-    }
-];
+const SUPABASE_URL = "https://zmbcnvkbdrrbymldgbes.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptYmNudmtiZHJyYnltbGRnYmVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDIzMjMsImV4cCI6MjA4NzQ3ODMyM30.mFOhCHfQ9TN_FDWEpBGS4sJ9S6HJMXaUdkVcv5oOMIA";
+
+async function fetchLessons() {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/lessons?select=*&order=id`, {
+        headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": "Bearer " + SUPABASE_KEY
+        }
+    });
+    return await res.json();
+}
+
+async function fetchSentences(lessonId) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/sentences?lesson_id=eq.${lessonId}&order=position`, {
+        headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": "Bearer " + SUPABASE_KEY
+        }
+    });
+    return await res.json();
+}
+
+let LESSON_DATABASE = [];
 
 
         // ============================================
@@ -2087,27 +1640,6 @@ const LESSON_DATABASE = [
         }
 
         // ============================================
-        // NOTES - Puter KV Storage
-        // ============================================
-        let userNotes = [];
-
-        const persistNotes = async () => {
-            await puter.kv.set('user_notes', JSON.stringify(userNotes));
-        };
-
-        const loadNotesFromPuter = async () => {
-            try {
-                const saved = await puter.kv.get('user_notes');
-                if (saved) {
-                    userNotes = JSON.parse(saved);
-                } else {
-                    userNotes = [{ id: "note-1", title: "Hello Note", content: "This is a sample note.", updatedAt: new Date().toISOString() }];
-                }
-            } catch(e) {
-                userNotes = [];
-            }
-        };
-
         let storyData = [];
         let currentIndex = 0;
         let currentTab = 'practice';
@@ -2125,159 +1657,13 @@ const LESSON_DATABASE = [
             event.target.classList.add('active');
 
             document.getElementById('practiceTab').style.display = 'none';
-            document.getElementById('notesContent').style.display = 'none';
-
+            
             if (tab === 'practice') {
                 document.getElementById('practiceTab').style.display = 'grid';
-            } else if (tab === 'notes') {
-                document.getElementById('notesContent').style.display = 'block';
-                await loadNotesList();
             }
         };
 
         // ============================================
-        // NOTES
-        // ============================================
-        async function loadNotesList() {
-            await loadNotesFromPuter();
-            const container = document.getElementById('notesList');
-
-            if (userNotes.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-sticky-note"></i>
-                        <h3>Chưa có ghi chú nào</h3>
-                        <p>Bấm '+' để tạo ghi chú đầu tiên của bạn</p>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = userNotes.map(note => `
-                    <div class="leaderboard-item" style="cursor: pointer; margin-bottom: 12px; position: relative;" onclick="editNote('${note.id}')">
-                        <div class="rank rank-other" style="min-width: 40px; height: 40px;">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="leaderboard-info">
-                            <div class="leaderboard-name">${note.title}</div>
-                            <div class="leaderboard-stats">${new Date(note.updatedAt).toLocaleDateString()}</div>
-                        </div>
-                        <button onclick="event.stopPropagation(); deleteNotePrompt('${note.id}')" 
-                                style="background: transparent; border: none; color: var(--error-color); cursor: pointer; padding: 8px;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-
-            document.getElementById('notesListView').style.display = 'block';
-            document.getElementById('notesEditorView').style.display = 'none';
-        }
-
-        window.createNewNote = () => {
-            currentNoteId = null;
-            document.getElementById('noteTitle').value = '';
-            document.getElementById('notesTextarea').value = '';
-            document.getElementById('editorTitle').textContent = 'Ghi chú mới';
-
-            document.getElementById('notesListView').style.display = 'none';
-            document.getElementById('notesEditorView').style.display = 'block';
-
-            updateCharCount();
-        };
-
-        window.editNote = (noteId) => {
-            const note = userNotes.find(n => n.id === noteId);
-            if (!note) return;
-
-            currentNoteId = noteId;
-            document.getElementById('noteTitle').value = note.title;
-            document.getElementById('notesTextarea').value = note.content;
-            document.getElementById('editorTitle').textContent = 'Sửa ghi chú';
-
-            document.getElementById('notesListView').style.display = 'none';
-            document.getElementById('notesEditorView').style.display = 'block';
-
-            updateCharCount();
-        };
-
-        window.saveNote = async () => {
-            const title = document.getElementById('noteTitle').value.trim();
-            const content = document.getElementById('notesTextarea').value.trim();
-
-            if (!title || !content) {
-                alert('Vui lòng nhập cả tiêu đề và nội dung!');
-                return;
-            }
-
-            if (currentNoteId) {
-                // Update
-                const index = userNotes.findIndex(n => n.id === currentNoteId);
-                if (index !== -1) {
-                    userNotes[index] = {
-                        ...userNotes[index],
-                        title,
-                        content,
-                        updatedAt: new Date().toISOString()
-                    };
-                }
-            } else {
-                // Create
-                const newNote = {
-                    id: 'note-' + Date.now(),
-                    title,
-                    content,
-                    updatedAt: new Date().toISOString()
-                };
-                userNotes.unshift(newNote);
-            }
-
-            persistNotes();
-            loadNotesList();
-        };
-
-        window.backToNotesList = () => {
-            loadNotesList();
-        };
-
-        window.deleteNotePrompt = (noteId) => {
-            noteToDelete = noteId;
-            document.getElementById('confirmModal').style.display = 'flex';
-        };
-
-        window.closeConfirmModal = () => {
-            document.getElementById('confirmModal').style.display = 'none';
-            noteToDelete = null;
-        };
-
-        window.confirmDeleteNote = async () => {
-            if (noteToDelete) {
-                userNotes = userNotes.filter(n => n.id !== noteToDelete);
-                persistNotes();
-                loadNotesList();
-                closeConfirmModal();
-            }
-        };
-
-        function updateCharCount() {
-            const textarea = document.getElementById('notesTextarea');
-            const charCount = document.getElementById('charCount');
-            const currentLength = textarea.value.length;
-
-            charCount.textContent = `${currentLength} / 2000`;
-
-            charCount.classList.remove('warning', 'error');
-            if (currentLength > 1800) {
-                charCount.classList.add('error');
-            } else if (currentLength > 1500) {
-                charCount.classList.add('warning');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const notesTextarea = document.getElementById('notesTextarea');
-            if (notesTextarea) {
-                notesTextarea.addEventListener('input', updateCharCount);
-            }
-        });
 
         // ============================================
         // LESSON LOADING
@@ -2385,22 +1771,24 @@ const LESSON_DATABASE = [
             }
         });
 
-        window.loadLesson = (lessonId) => {
+        window.loadLesson = async (lessonId) => {
             const lesson = LESSON_DATABASE.find(l => l.id === lessonId);
             if (!lesson) {
                 alert("❌ Không tìm thấy bài học!");
                 return;
             }
 
-            // Convert data format from {vi, en_best, phrases} to {vi, en_best, phrase_breakdown}
-            storyData = lesson.data.map(item => ({
-                vi: item.vi,
-                en_best: item.en_best,
-                phrase_breakdown: item.phrases.map(p => ({
-                    phrase: p.en,
-                    meaning: p.vi
-                }))
-            }));
+            try {
+                const sentences = await fetchSentences(lessonId);
+                storyData = sentences.map(s => ({
+                    vi: s.vi,
+                    en_best: s.en_best,
+                    phrase_breakdown: []
+                }));
+            } catch(e) {
+                console.error('Lỗi load sentences:', e);
+                storyData = [];
+            }
 
             currentIndex = 0;
 
@@ -2450,32 +1838,34 @@ const LESSON_DATABASE = [
 
         function renderStoryUI() {
             const container = document.getElementById('storyContainer');
-
-            // Bước 1: Build đoạn văn thuần - câu đã xong dùng tiếng Anh, chưa xong dùng tiếng Việt
-            let fullText = storyData.map((item, index) => {
-                return index < currentIndex ? item.en_best : item.vi;
-            }).join(' ');
-
-            // Bước 2: Highlight câu active - tìm vị trí cuối cùng của câu trong text
-            const activeText = currentIndex < storyData.length
-                ? (currentIndex < currentIndex ? storyData[currentIndex].en_best : storyData[currentIndex].vi)
-                : null;
-
-            // Bước 3: Wrap câu done bằng span trắng đậm, câu pending xám mờ
-            // Làm theo đúng cách web gốc: để nguyên text, chỉ wrap span cho câu active
-            let html = storyData.map((item, index) => {
-                const text = index < currentIndex ? item.en_best : item.vi;
-                const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            const html = storyData.map((item, index) => {
+                let cls, text;
                 if (index < currentIndex) {
-                    return `<span style="color:var(--text-primary);font-weight:600">${safe}</span>`;
+                    // Câu đã xong - hiện tiếng Anh, trắng đậm
+                    cls = 'sentence done';
+                    text = item.en_best;
                 } else if (index === currentIndex) {
-                    return `<span style="color:#ff6b9d;font-weight:600">${safe}</span>`;
+                    // Câu đang làm - hồng
+                    cls = 'sentence active';
+                    text = item.vi;
                 } else {
-                    return `<span style="color:var(--text-secondary);opacity:0.5">${safe}</span>`;
+                    // Câu chưa tới - xám mờ
+                    cls = 'sentence pending';
+                    text = item.vi;
                 }
+                const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                return `<span class="${cls}">${safe}</span>`;
             }).join(' ');
-
             container.innerHTML = html;
+
+            // Hoàn thành tất cả câu
+            if (currentIndex >= storyData.length) {
+                document.getElementById('userInput').style.display = 'none';
+                document.getElementById('practiceControls').style.display = 'none';
+                document.getElementById('feedbackPanel').style.display = 'none';
+                updateProgress();
+                return;
+            }
 
             document.getElementById('userInput').value = '';
             document.getElementById('userInput').disabled = false;
@@ -2486,14 +1876,12 @@ const LESSON_DATABASE = [
             document.getElementById('btnRetry').style.display = 'none';
             document.getElementById('btnNext').style.display = 'none';
 
-            // Show/hide Previous button based on current index
             if (currentIndex > 0) {
                 document.getElementById('btnPrevious').style.display = 'flex';
             } else {
                 document.getElementById('btnPrevious').style.display = 'none';
             }
 
-            // Hide feedback when moving to new sentence
             document.getElementById('feedbackBox').innerHTML = `
                 <div class="empty-state">
                     <i class="fas fa-lightbulb"></i>
@@ -2755,16 +2143,27 @@ Câu tiếng Việt tương ứng: "${currentData.vi}"`;
         };
 
         window.nextSentence = async () => {
-            if (currentIndex < storyData.length - 1) {
-                currentIndex++;
-                renderStoryUI();
-            } else {
-                alert("🎉 CONGRATULATIONS!");
-                document.getElementById('progressFill').style.width = '100%';
-            }
+            currentIndex++;
+            renderStoryUI();
+            document.getElementById('progressFill').style.width =
+                `${Math.min((currentIndex / storyData.length) * 100, 100)}%`;
         };
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const lessons = await fetchLessons();
+                LESSON_DATABASE = lessons.map(l => ({
+                    id: l.id,
+                    title: l.title,
+                    category: l.category || '1',
+                    filterTopic: l.category || '1',
+                    preview: l.preview || '',
+                    data: []
+                }));
+                filteredLessons = [...LESSON_DATABASE];
+            } catch(e) {
+                console.error('Lỗi load lessons:', e);
+            }
             renderLessonMenu();
         });
     </script>
