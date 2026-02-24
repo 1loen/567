@@ -1,0 +1,2773 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Loen</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #0a0e1a;
+            --bg-panel: #1a1f2e;
+            --bg-secondary: #141824;
+            --bg-hover: #1e2437;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0a6;
+            --text-highlight: #a78bfa;
+            --text-done: #34d399;
+            --accent-yellow: #f59e0b;
+            --accent-blue: #60a5fa;
+            --accent-pink: #f472b6;
+            --accent-green: #34d399;
+            --border-color: #2a2f3e;
+            --error-color: #ef4444;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 12px 0 rgb(0 0 0 / 0.4);
+            --shadow-lg: 0 10px 40px 0 rgb(0 0 0 / 0.5);
+            --shadow-glow: 0 0 20px rgba(167, 139, 250, 0.3);
+            --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-green: linear-gradient(135deg, #34d399 0%, #059669 100%);
+            --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --gradient-pink: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e1a;
+            color: var(--text-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 60px 70px, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 50px 50px, rgba(255, 255, 255, 0.4), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 90px 10px, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200px 200px;
+            animation: stars 60s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes stars {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ==================== TOP NAV ==================== */
+        .top-nav {
+            background: var(--bg-panel);
+            border-radius: 20px;
+            padding: 16px 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-right: auto;
+        }
+
+        .logo i {
+            background: var(--gradient-purple);
+            padding: 10px;
+            border-radius: 12px;
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid var(--text-highlight);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .user-stats {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-purple);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-danger {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* ==================== TABS ==================== */
+        .tabs {
+            background: var(--bg-panel);
+            border-radius: 16px;
+            padding: 8px;
+            display: inline-flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .tab.active {
+            background: var(--gradient-purple);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab:not(.active):hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .tab.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ==================== MAIN LAYOUT ==================== */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ==================== PRACTICE TAB ==================== */
+        .paste-area {
+            width: 100%;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .paste-area:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.1);
+        }
+
+        .story-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            min-height: 120px;
+            word-wrap: break-word;
+        }
+
+        .sentence {
+            transition: all 0.3s ease;
+            padding: 0;
+            border-radius: 6px;
+            display: inline;
+        }
+
+        .sentence.pending {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .sentence.active {
+            color: #ff6b9d;
+            font-weight: 600;
+            background: transparent;
+            padding: 0;
+            border-radius: 6px;
+        }
+
+        .sentence.done {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            min-height: 100px;
+            resize: none;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 14px;
+        }
+
+        #userInput {
+            border: 2px solid var(--accent-yellow);
+            border-radius: 12px;
+            min-height: 120px;
+        }
+
+        #userInput:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-check {
+            width: fit-content;
+            background: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-check:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary-outline {
+            background: transparent;
+            color: #9aa0a6;
+            border: 1.5px solid #3c4043 !important;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e8eaed;
+            border-color: #5f6368 !important;
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .progress-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+        }
+
+        .progress-bar {
+            height: 14px;
+            background: var(--bg-panel);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-purple);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .step-counter {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .feedback-card {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 14px;
+        }
+
+        .answer-box {
+            background: rgba(96, 165, 250, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 12px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .answer-text {
+            font-weight: 600;
+            color: var(--accent-blue);
+            font-size: 1.05rem;
+        }
+
+        /* ==================== NOTES ==================== */
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .notes-list-view {
+            display: block;
+        }
+
+        .notes-editor-view {
+            display: none;
+        }
+
+        .note-item {
+            padding: 18px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--text-highlight);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .note-item:hover {
+            background: var(--bg-hover);
+            transform: translateX(4px);
+        }
+
+        .note-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-right: 40px;
+        }
+
+        .note-item-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .note-item-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+        }
+
+        .note-item-preview {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .note-item-menu-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .note-item-menu-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-color: var(--text-highlight);
+        }
+
+        .note-menu-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 12px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            z-index: 100;
+            min-width: 160px;
+            display: none;
+        }
+
+        .note-menu-dropdown.active {
+            display: block;
+            animation: fadeInUp 0.2s ease;
+        }
+
+        .note-menu-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .note-menu-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .note-menu-item.danger {
+            color: var(--error-color);
+        }
+
+        .note-menu-item.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .notes-textarea {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 20px;
+            border-radius: 14px;
+            font-size: 1rem;
+            min-height: 400px;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        .notes-title-input {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .notes-title-input:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        .notes-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .char-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        .char-count.warning {
+            color: var(--accent-yellow);
+        }
+
+        .char-count.error {
+            color: var(--error-color);
+        }
+
+        /* ==================== EMPTY STATES ==================== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .empty-state h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .empty-state p {
+            text-align: center;
+        }
+
+        /* ==================== LOGIN NEEDED OVERLAY ==================== */
+        .login-needed {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .login-needed i {
+            font-size: 5rem;
+            margin-bottom: 24px;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-needed h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .login-needed p {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        /* ==================== MODALS ==================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--bg-panel);
+            padding: 48px;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-purple);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .login-modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--gradient-purple);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .login-modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .login-modal-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+        }
+
+        .auth-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--text-primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .auth-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .auth-btn-login {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .auth-btn-register {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error-color);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            display: none;
+            border-left: 4px solid var(--error-color);
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .confirm-modal-content {
+            max-width: 400px;
+        }
+
+        .confirm-modal-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: rgba(239, 68, 68, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--error-color);
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .top-nav {
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 10px 12px;
+            }
+
+            .practice-layout {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .user-info {
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .user-avatar {
+                width: 36px;
+                height: 36px;
+            }
+
+            .user-details {
+                display: none;
+            }
+
+            .nav-actions {
+                justify-content: flex-end;
+                flex-wrap: nowrap;
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .tabs {
+                width: 100%;
+                justify-content: stretch;
+                gap: 4px;
+                padding: 8px;
+            }
+
+            .tab {
+                flex: 1;
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+
+            .tab i {
+                display: none;
+            }
+
+            .panel {
+                padding: 14px;
+                border-radius: 10px;
+            }
+
+            .panel-title {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .story-content {
+                font-size: 0.95rem;
+                padding: 14px;
+                line-height: 1.6;
+            }
+
+            .sentence {
+                padding: 2px 4px;
+                font-size: 0.95rem;
+            }
+
+            textarea {
+                padding: 12px;
+                font-size: 0.9rem;
+                min-height: 80px;
+            }
+
+            .paste-area {
+                min-height: 80px;
+                font-size: 0.9rem;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .btn-check {
+                padding: 9px 12px;
+                font-size: 0.8rem;
+                min-width: calc(50% - 3px);
+                flex: 1 1 calc(50% - 3px);
+            }
+
+            .modal-content {
+                padding: 24px 16px;
+                width: 95%;
+                max-width: 95%;
+            }
+
+            .form-input {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile - Small phones */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .top-nav {
+                padding: 10px;
+                border-radius: 12px;
+                gap: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .nav-actions {
+                gap: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                flex-wrap: nowrap;
+                width: auto;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .tabs {
+                gap: 4px;
+                padding: 8px;
+                display: flex;
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .tab {
+                padding: 8px 6px;
+                font-size: 0.75rem;
+                flex: 1;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            .tab i {
+                display: none;
+            }
+
+            .panel {
+                padding: 14px;
+                border-radius: 10px;
+                width: 100%;
+            }
+
+            .panel-title {
+                font-size: 1rem;
+                margin-bottom: 12px;
+                width: 100%;
+            }
+
+            .story-content {
+                font-size: 0.8rem;
+                padding: 12px;
+                line-height: 1.6;
+                width: 100%;
+                text-align: justify;
+                word-spacing: normal;
+            }
+
+            .sentence {
+                padding: 4px 6px;
+                font-size: 0.95rem;
+                display: inline;
+                margin: 0;
+                white-space: normal;
+            }
+
+            textarea {
+                padding: 12px;
+                font-size: 0.9rem;
+                min-height: 80px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .paste-area {
+                min-height: 80px;
+                font-size: 0.9rem;
+                width: 100%;
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+                gap: 8px;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-check {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+                flex: 1 1 calc(50% - 4px);
+                min-width: calc(50% - 4px);
+                text-align: center;
+            }
+
+            .filter-group {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .filter-label {
+                font-size: 0.9rem;
+            }
+
+            .filter-select {
+                font-size: 0.9rem;
+                padding: 8px 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .lessons-header {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                align-items: stretch;
+            }
+
+            .lessons-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .lesson-card {
+                padding: 14px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .lesson-title {
+                font-size: 1rem;
+                margin-bottom: 6px;
+            }
+
+            .lesson-category {
+                font-size: 0.8rem;
+                margin-bottom: 6px;
+            }
+
+            .lesson-preview {
+                font-size: 0.85rem;
+                max-height: 70px;
+                line-height: 1.5;
+            }
+
+            .lesson-attempts {
+                font-size: 0.8rem;
+                margin-top: 8px;
+            }
+
+            .modal-content {
+                padding: 18px 14px;
+                width: 95%;
+                max-width: 95%;
+                border-radius: 12px;
+                max-height: 85vh;
+                overflow-y: auto;
+            }
+
+            .modal-header {
+                font-size: 1.1rem;
+                margin-bottom: 14px;
+                word-wrap: break-word;
+            }
+
+            .modal-body {
+                font-size: 0.9rem;
+            }
+
+            .modal-close {
+                font-size: 1.2rem;
+                padding: 4px 8px;
+            }
+
+            .word-breakdown {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .phrase-item {
+                padding: 10px;
+                font-size: 0.85rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .phrase-en {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+
+            .phrase-vi {
+                font-size: 0.85rem;
+            }
+
+            .pagination {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .pagination-info {
+                font-size: 0.8rem;
+                text-align: center;
+                width: 100%;
+            }
+
+            #pageNumbers {
+                display: flex;
+                gap: 4px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pagination-btn {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+                min-width: 40px;
+            }
+
+            .form-input {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .practice-layout {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+                width: 100%;
+            }
+
+            .btn-back {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* Tablet - iPad */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 16px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .top-nav {
+                padding: 12px 20px;
+                justify-content: flex-end;
+            }
+
+            .practice-layout {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+
+            .panel {
+                padding: 18px;
+            }
+
+            .panel-title {
+                font-size: 1.15rem;
+            }
+
+            .story-content {
+                font-size: 1.05rem;
+                padding: 18px;
+            }
+
+            .sentence {
+                padding: 3px 6px;
+            }
+
+            textarea {
+                padding: 14px;
+                font-size: 0.95rem;
+            }
+
+            .btn-check {
+                padding: 10px 16px;
+                font-size: 0.88rem;
+            }
+
+            .tabs {
+                gap: 8px;
+            }
+
+            .tab {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        /* ==================== LESSON CARDS ==================== */
+        .lessons-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .lessons-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .filter-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .filter-select {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--text-highlight);
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .lesson-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lesson-card:hover {
+            border-color: var(--text-highlight);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .lesson-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .lesson-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .lesson-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end;
+        }
+
+        .badge-new {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-attempt {
+            background: #10b981;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .lesson-preview {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .lesson-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .lesson-meta i {
+            margin-right: 4px;
+        }
+
+        .btn-start-exercise {
+            background: #f59e0b;
+            color: #0a0e1a;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start-exercise:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .pagination-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-right: auto;
+        }
+
+        #pageNumbers {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pagination-btn {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover {
+            border-color: var(--text-highlight);
+            background: var(--bg-hover);
+        }
+
+        .pagination-btn.active {
+            background: var(--text-highlight);
+            border-color: var(--text-highlight);
+            color: white;
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 1024px) {
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <div class="top-nav fade-in-up">
+            <!-- Guest view -->
+            <div id="guestNav" class="nav-actions">
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs fade-in-up" style="animation-delay: 0.1s;">
+            <button class="tab active" onclick="switchTab('practice')">
+                <i class="fas fa-book-open"></i> Practice
+            </button>
+            <button id="notesTab" class="tab" onclick="switchTab('notes')">
+                <i class="fas fa-sticky-note"></i> Notes
+            </button>
+        </div>
+
+        <!-- PRACTICE TAB -->
+        <div id="practiceTab" class="fade-in-up" style="animation-delay: 0.2s; max-width: 1200px; margin: 0 auto;">
+            <div class="practice-layout" style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <!-- Left Column: Story and Input -->
+                <div class="panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <div class="panel-title" style="margin-bottom: 0;">
+                            <i class="fas fa-edit"></i> Practice Area
+                        </div>
+                        <button id="btnBackToMenu" class="btn btn-primary" onclick="showLessonMenu()"
+                            style="display: none;">
+                            <i class="fas fa-list"></i> Menu
+                        </button>
+                    </div>
+
+                    <!-- Lesson Menu -->
+                    <div id="lessonMenuContainer">
+                        <div class="lessons-header">
+                            <div></div>
+                            <div class="filter-group">
+                                <span class="filter-label">Filter Topic:</span>
+                                <select class="filter-select" id="topicFilter">
+                                    <option value="all">All</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="lessonList" class="lessons-grid">
+                            <!-- Lessons will be rendered here -->
+                        </div>
+                        <div class="pagination">
+                            <span class="pagination-info">Displaying items <span id="displayRange">1-6</span> of <span
+                                    id="totalItems">0</span> in total</span>
+                            <button class="pagination-btn disabled" id="prevPage">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div id="pageNumbers"></div>
+                            <button class="pagination-btn" id="nextPage">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="story-content" id="storyContainer" style="display: none;">
+                        <div class="empty-state">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Ready to Learn!</h3>
+                            <p>Choose a lesson to start</p>
+                        </div>
+                    </div>
+
+                    <textarea id="userInput"
+                        placeholder="Enter your English translation here... (Only highlighted sentence)" disabled
+                        style="display: none;"></textarea>
+
+                    <div class="controls" id="practiceControls" style="display: none; gap: 16px;">
+                        <button id="btnPrevious" class="btn-secondary-outline" style="display:none;"
+                            onclick="previousSentence()">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button id="btnCheck" class="btn-check" onclick="checkCurrentSentence()" style="display:none;">
+                            Check
+                        </button>
+                        <button id="btnBack" class="btn-secondary-outline" style="display:none;"
+                            onclick="previousSentence()">
+                            Back
+                        </button>
+                        <button id="btnStartOver" class="btn-secondary-outline" style="display:flex;"
+                            onclick="skipSentence()">
+                            Skip
+                        </button>
+                        <button id="btnRetry" class="btn-secondary-outline" onclick="retrySentence()"
+                            style="display:none;">
+                            Retry
+                        </button>
+                        <button id="btnNext" class="btn-secondary-outline" onclick="nextSentence()"
+                            style="display:none;">
+                            Next
+                        </button>
+                    </div>
+
+                    <!-- Progress inline -->
+                    <div id="practiceProgress"
+                        style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); display: none;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                Step <span id="currentStep">0</span> of <span id="totalSteps">0</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill" style="width:0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Feedback -->
+                <div class="panel" id="feedbackPanel" style="display: none;">
+                    <div class="panel-title">
+                        <i class="fas fa-comments"></i> Feedback
+                    </div>
+                    <div id="feedbackCard" style="display: block;">
+                        <div id="feedbackBox">
+                            <div class="empty-state">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Check your answer</h3>
+                                <p>Submit your translation to see feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTES TAB -->
+        <div id="notesContent" style="display: none;">
+            <div class="panel fade-in-up">
+                <!-- List View -->
+                <div id="notesListView" class="notes-list-view">
+                    <div class="notes-header">
+                        <div class="panel-title" style="margin-bottom: 0;">
+                            <i class="fas fa-sticky-note"></i> My Notes
+                        </div>
+                        <button class="btn btn-primary" onclick="createNewNote()">
+                            <i class="fas fa-plus"></i> New
+                        </button>
+                    </div>
+                    <div id="notesList"></div>
+                </div>
+
+                <!-- Editor View -->
+                <div id="notesEditorView" class="notes-editor-view">
+                    <div class="notes-header">
+                        <div class="panel-title" style="margin-bottom: 0;">
+                            <i class="fas fa-edit"></i> <span id="editorTitle">New Note</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="backToNotesList()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+
+                    <input type="text" id="noteTitle" class="notes-title-input" placeholder="Tiêu đề ghi chú..."
+                        maxlength="100">
+
+                    <div class="notes-info">
+                        <span>
+                            <i class="fas fa-info-circle"></i>
+                            Tối đa 2000 ký tự
+                        </span>
+                        <span class="char-count" id="charCount">0 / 2000</span>
+                    </div>
+
+                    <textarea id="notesTextarea" class="notes-textarea" placeholder="✏️ Viết ghi chú của bạn tại đây..."
+                        maxlength="2000"></textarea>
+
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary" style="flex: 1;" onclick="saveNote()">
+                            <i class="fas fa-save"></i> Lưu ghi chú
+                        </button>
+                        <button class="btn btn-secondary" onclick="backToNotesList()">
+                            <i class="fas fa-times"></i> Hủy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-content confirm-modal-content">
+            <button class="modal-close" onclick="closeConfirmModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="confirm-modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+
+            <h3 style="margin-bottom: 12px; color: var(--text-primary);">Xác nhận xóa</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">
+                Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.
+            </p>
+
+            <div class="confirm-buttons">
+                <button class="btn btn-secondary" onclick="closeConfirmModal()" style="flex: 1;">
+                    <i class="fas fa-times"></i> Hủy
+                </button>
+                <button class="btn btn-danger" onclick="confirmDeleteNote()" style="flex: 1;">
+                    <i class="fas fa-trash"></i> Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.puter.com/v2/"></script>
+
+    <script>
+const LESSON_DATABASE = [
+    {
+        id: 1,
+        title: "1 – BÀI 1",
+        category: "1",
+        categoryId: "topic1",
+        filterTopic: "1",
+        preview: "Hôm nay trời nắng. Tôi thức dậy lúc 6 giờ sáng. Tôi đánh răng. Tôi rửa mặt. Tôi mặc quần áo sạch...",
+        isNew: true,
+        attempts: 0,
+        data: [
+            { vi: "Hôm nay trời nắng.", en_best: "Today it is sunny.", phrases: [{ en: "today", vi: "hôm nay" }, { en: "sunny", vi: "trời nắng" }] },
+            { vi: "Tôi thức dậy lúc 6 giờ sáng.", en_best: "I wake up at 6 am.", phrases: [{ en: "wake up", vi: "thức dậy" }, { en: "at 6 am", vi: "lúc 6 giờ sáng" }] },
+            { vi: "Tôi đánh răng.", en_best: "I brush my teeth.", phrases: [{ en: "brush", vi: "đánh" }, { en: "teeth", vi: "răng" }] },
+            { vi: "Tôi rửa mặt.", en_best: "I wash my face.", phrases: [{ en: "wash", vi: "rửa" }, { en: "face", vi: "mặt" }] },
+            { vi: "Tôi mặc quần áo sạch.", en_best: "I put on clean clothes.", phrases: [{ en: "put on", vi: "mặc vào" }, { en: "clean clothes", vi: "quần áo sạch" }] },
+            { vi: "Tôi ăn bánh mì với trứng.", en_best: "I eat bread with eggs.", phrases: [{ en: "bread", vi: "bánh mì" }, { en: "eggs", vi: "trứng" }] },
+            { vi: "Tôi uống một cốc nước.", en_best: "I drink a cup of water.", phrases: [{ en: "drink", vi: "uống" }, { en: "cup of water", vi: "cốc nước" }] },
+            { vi: "Tôi mang ba lô đi học.", en_best: "I take my backpack to school.", phrases: [{ en: "backpack", vi: "ba lô" }, { en: "to school", vi: "đi học" }] },
+            { vi: "Tôi ra khỏi nhà.", en_best: "I leave the house.", phrases: [{ en: "leave", vi: "rời khỏi" }, { en: "house", vi: "ngôi nhà" }] },
+            { vi: "Tôi chào mẹ.", en_best: "I say goodbye to my mom.", phrases: [{ en: "say goodbye", vi: "chào tạm biệt" }, { en: "mom", vi: "mẹ" }] },
+            { vi: "Tôi đi bộ ra bến xe buýt.", en_best: "I walk to the bus stop.", phrases: [{ en: "walk", vi: "đi bộ" }, { en: "bus stop", vi: "bến xe buýt" }] },
+            { vi: "Tôi đứng chờ xe buýt.", en_best: "I stand and wait for the bus.", phrases: [{ en: "wait for", vi: "chờ đợi" }, { en: "bus", vi: "xe buýt" }] },
+            { vi: "Tôi thấy bạn cùng lớp trên đường.", en_best: "I see my classmate on the street.", phrases: [{ en: "classmate", vi: "bạn cùng lớp" }, { en: "street", vi: "con đường" }] },
+            { vi: "Chúng tôi chào nhau.", en_best: "We greet each other.", phrases: [{ en: "greet", vi: "chào hỏi" }, { en: "each other", vi: "nhau" }] },
+            { vi: "Tôi lên xe buýt.", en_best: "I get on the bus.", phrases: [{ en: "get on", vi: "lên (xe)" }] },
+            { vi: "Tôi tìm chỗ ngồi.", en_best: "I find a seat.", phrases: [{ en: "find", vi: "tìm thấy" }, { en: "seat", vi: "chỗ ngồi" }] },
+            { vi: "Tôi nghe nhạc trên điện thoại.", en_best: "I listen to music on my phone.", phrases: [{ en: "listen to music", vi: "nghe nhạc" }, { en: "phone", vi: "điện thoại" }] },
+            { vi: "Tôi nhìn ra ngoài cửa sổ.", en_best: "I look out of the window.", phrases: [{ en: "look out", vi: "nhìn ra ngoài" }, { en: "window", vi: "cửa sổ" }] },
+            { vi: "Trời trong xanh.", en_best: "The sky is clear blue.", phrases: [{ en: "sky", vi: "bầu trời" }, { en: "clear blue", vi: "trong xanh" }] },
+            { vi: "Tôi cảm thấy vui.", en_best: "I feel happy.", phrases: [{ en: "feel", vi: "cảm thấy" }, { en: "happy", vi: "vui vẻ" }] },
+            { vi: "Tôi đến trường.", en_best: "I arrive at school.", phrases: [{ en: "arrive", vi: "đến nơi" }, { en: "school", vi: "trường học" }] },
+            { vi: "Tôi đi vào lớp học.", en_best: "I go into the classroom.", phrases: [{ en: "go into", vi: "đi vào" }, { en: "classroom", vi: "lớp học" }] },
+            { vi: "Tôi ngồi xuống bàn.", en_best: "I sit down at my desk.", phrases: [{ en: "sit down", vi: "ngồi xuống" }, { en: "desk", vi: "bàn làm việc/học" }] },
+            { vi: "Tôi lấy sách vở ra.", en_best: "I take out my books and notebooks.", phrases: [{ en: "take out", vi: "lấy ra" }, { en: "notebooks", vi: "vở ghi" }] },
+            { vi: "Giáo viên bắt đầu bài học.", en_best: "The teacher starts the lesson.", phrases: [{ en: "teacher", vi: "giáo viên" }, { en: "starts", vi: "bắt đầu" }] },
+            { vi: "Tôi nghe giáo viên giảng bài.", en_best: "I listen to the teacher's lecture.", phrases: [{ en: "lecture", vi: "bài giảng" }] },
+            { vi: "Tôi ghi chú vào vở.", en_best: "I take notes in my notebook.", phrases: [{ en: "take notes", vi: "ghi chú" }] },
+            { vi: "Tôi trả lời một câu hỏi của giáo viên.", en_best: "I answer a question from the teacher.", phrases: [{ en: "answer", vi: "trả lời" }, { en: "question", vi: "câu hỏi" }] },
+            { vi: "Tôi cảm thấy tự tin.", en_best: "I feel confident.", phrases: [{ en: "confident", vi: "tự tin" }] },
+            { vi: "Tiết học kết thúc.", en_best: "The class period ends.", phrases: [{ en: "class period", vi: "tiết học" }, { en: "ends", vi: "kết thúc" }] },
+            { vi: "Tôi đi ra sân trường.", en_best: "I go out to the schoolyard.", phrases: [{ en: "schoolyard", vi: "sân trường" }] },
+            { vi: "Tôi gặp bạn bè.", en_best: "I meet my friends.", phrases: [{ en: "meet", vi: "gặp gỡ" }, { en: "friends", vi: "bạn bè" }] },
+            { vi: "Chúng tôi trò chuyện vui vẻ.", en_best: "We chat happily.", phrases: [{ en: "chat", vi: "trò chuyện" }, { en: "happily", vi: "vui vẻ" }] },
+            { vi: "Chúng tôi ăn trưa cùng nhau.", en_best: "We eat lunch together.", phrases: [{ en: "eat lunch", vi: "ăn trưa" }, { en: "together", vi: "cùng nhau" }] },
+            { vi: "Tôi uống nước.", en_best: "I drink water.", phrases: [{ en: "drink", vi: "uống" }, { en: "water", vi: "nước" }] },
+            { vi: "Tôi đi dạo quanh sân trường.", en_best: "I take a walk around the schoolyard.", phrases: [{ en: "take a walk", vi: "đi dạo" }] },
+            { vi: "Tôi nhìn thấy cây cối xanh tươi.", en_best: "I see the lush green trees.", phrases: [{ en: "lush green", vi: "xanh tươi" }, { en: "trees", vi: "cây cối" }] },
+            { vi: "Tôi nghe tiếng chim hót.", en_best: "I hear the birds singing.", phrases: [{ en: "birds", vi: "những con chim" }, { en: "singing", vi: "đang hót" }] },
+            { vi: "Tôi ngồi nghỉ một lúc.", en_best: "I sit down and rest for a while.", phrases: [{ en: "rest", vi: "nghỉ ngơi" }, { en: "for a while", vi: "một lúc" }] },
+            { vi: "Tôi cảm thấy thư giãn.", en_best: "I feel relaxed.", phrases: [{ en: "relaxed", vi: "thư giãn" }] },
+            { vi: "Tiết học buổi chiều bắt đầu.", en_best: "The afternoon class starts.", phrases: [{ en: "afternoon", vi: "buổi chiều" }] },
+            { vi: "Tôi học môn Toán.", en_best: "I study math.", phrases: [{ en: "study", vi: "học" }, { en: "math", vi: "môn toán" }] },
+            { vi: "Tôi làm bài tập trên giấy.", en_best: "I do exercises on paper.", phrases: [{ en: "do exercises", vi: "làm bài tập" }] },
+            { vi: "Tôi hỏi giáo viên một câu.", en_best: "I ask the teacher a question.", phrases: [{ en: "ask", vi: "hỏi" }] },
+            { vi: "Tôi nhận được câu trả lời.", en_best: "I receive an answer.", phrases: [{ en: "receive", vi: "nhận được" }] },
+            { vi: "Tôi cảm thấy hài lòng.", en_best: "I feel satisfied.", phrases: [{ en: "satisfied", vi: "hài lòng" }] },
+            { vi: "Tiết học kết thúc.", en_best: "The class period ends.", phrases: [{ en: "ends", vi: "kết thúc" }] },
+            { vi: "Tôi đi về nhà.", en_best: "I go home.", phrases: [{ en: "go home", vi: "về nhà" }] },
+            { vi: "Tôi ăn tối với gia đình.", en_best: "I eat dinner with my family.", phrases: [{ en: "eat dinner", vi: "ăn tối" }, { en: "family", vi: "gia đình" }] },
+            { vi: "Tôi đi ngủ lúc 10 giờ tối.", en_best: "I go to bed at 10 pm.", phrases: [{ en: "go to bed", vi: "đi ngủ" }] }
+        ]
+    },
+    {
+        id: 2,
+        title: "1 – BÀI 2",
+        category: "1",
+        categoryId: "topic1",
+        filterTopic: "1",
+        preview: "Hôm nay tôi đi công viên. Tôi mang theo một chai nước. Tôi mặc quần áo thể thao. Tôi đi bộ quanh công viên...",
+        isNew: true,
+        attempts: 0,
+        data: [
+            { vi: "Hôm nay tôi đi công viên.", en_best: "Today I go to the park.", phrases: [{ en: "park", vi: "công viên" }] },
+            { vi: "Tôi mang theo một chai nước.", en_best: "I bring along a bottle of water.", phrases: [{ en: "bring along", vi: "mang theo" }, { en: "bottle of water", vi: "chai nước" }] },
+            { vi: "Tôi mặc quần áo thể thao.", en_best: "I wear sports clothes.", phrases: [{ en: "wear", vi: "mặc" }, { en: "sports clothes", vi: "quần áo thể thao" }] },
+            { vi: "Tôi đi bộ quanh công viên.", en_best: "I walk around the park.", phrases: [{ en: "walk around", vi: "đi bộ quanh" }] },
+            { vi: "Tôi nhìn thấy nhiều cây xanh.", en_best: "I see many green trees.", phrases: [{ en: "green trees", vi: "nhiều cây xanh" }] },
+            { vi: "Không khí rất trong lành.", en_best: "The air is very fresh.", phrases: [{ en: "air", vi: "không khí" }, { en: "fresh", vi: "trong lành" }] },
+            { vi: "Tôi hít thở sâu.", en_best: "I take a deep breath.", phrases: [{ en: "take a deep breath", vi: "hít thở sâu" }] },
+            { vi: "Tôi cảm thấy khỏe mạnh.", en_best: "I feel healthy.", phrases: [{ en: "healthy", vi: "khỏe mạnh" }] },
+            { vi: "Tôi thấy một con chó đang chạy.", en_best: "I see a dog running.", phrases: [{ en: "dog running", vi: "con chó đang chạy" }] },
+            { vi: "Chủ của nó đang cười.", en_best: "Its owner is laughing.", phrases: [{ en: "owner", vi: "chủ nhân" }, { en: "laughing", vi: "đang cười" }] },
+            { vi: "Một cậu bé đang chơi bóng.", en_best: "A boy is playing with a ball.", phrases: [{ en: "playing with a ball", vi: "đang chơi bóng" }] },
+            { vi: "Cậu bé trông rất vui.", en_best: "The boy looks very happy.", phrases: [{ en: "looks", vi: "trông có vẻ" }] },
+            { vi: "Tôi ngồi xuống một chiếc ghế.", en_best: "I sit down on a bench.", phrases: [{ en: "bench", vi: "ghế dài (công viên)" }] },
+            { vi: "Tôi uống nước.", en_best: "I drink water.", phrases: [{ en: "drink water", vi: "uống nước" }] },
+            { vi: "Tôi nhìn bầu trời xanh.", en_best: "I look at the blue sky.", phrases: [{ en: "blue sky", vi: "bầu trời xanh" }] },
+            { vi: "Tôi nghe tiếng chim hót.", en_best: "I hear the birds singing.", phrases: [{ en: "hear", vi: "nghe thấy" }] },
+            { vi: "Tôi cảm thấy bình yên.", en_best: "I feel peaceful.", phrases: [{ en: "peaceful", vi: "bình yên" }] },
+            { vi: "Tôi đọc một cuốn sách nhỏ.", en_best: "I read a small book.", phrases: [{ en: "read", vi: "đọc" }, { en: "small book", vi: "cuốn sách nhỏ" }] },
+            { vi: "Tôi viết vài dòng vào điện thoại.", en_best: "I write a few lines on my phone.", phrases: [{ en: "write", vi: "viết" }, { en: "few lines", vi: "vài dòng" }] },
+            { vi: "Tôi chụp một bức ảnh.", en_best: "I take a photo.", phrases: [{ en: "take a photo", vi: "chụp ảnh" }] },
+            { vi: "Tôi thấy một người đang chạy bộ.", en_best: "I see someone jogging.", phrases: [{ en: "jogging", vi: "chạy bộ" }] },
+            { vi: "Một người phụ nữ đang tập yoga.", en_best: "A woman is practicing yoga.", phrases: [{ en: "practicing yoga", vi: "đang tập yoga" }] },
+            { vi: "Tôi mỉm cười khi nhìn họ.", en_best: "I smile when I look at them.", phrases: [{ en: "smile", vi: "mỉm cười" }] },
+            { vi: "Tôi đi bộ thêm một vòng nữa.", en_best: "I walk one more lap.", phrases: [{ en: "one more lap", vi: "thêm một vòng nữa" }] },
+            { vi: "Tôi kiểm tra đồng hồ.", en_best: "I check my watch.", phrases: [{ en: "check", vi: "kiểm tra" }, { en: "watch", vi: "đồng hồ" }] },
+            { vi: "Đã 8 giờ sáng.", en_best: "It is already 8 am.", phrases: [{ en: "already", vi: "đã... rồi" }] },
+            { vi: "Tôi quyết định về nhà.", en_best: "I decide to go home.", phrases: [{ en: "decide", vi: "quyết định" }] },
+            { vi: "Tôi rời khỏi công viên.", en_best: "I leave the park.", phrases: [{ en: "leave", vi: "rời khỏi" }] },
+            { vi: "Tôi đi bộ về nhà.", en_best: "I walk back home.", phrases: [{ en: "walk back", vi: "đi bộ về" }] },
+            { vi: "Tôi cảm thấy thoải mái.", en_best: "I feel comfortable.", phrases: [{ en: "comfortable", vi: "thoải mái" }] },
+            { vi: "Tôi tắm sau khi về nhà.", en_best: "I take a shower after coming home.", phrases: [{ en: "take a shower", vi: "đi tắm" }] },
+            { vi: "Tôi thay quần áo sạch.", en_best: "I change into clean clothes.", phrases: [{ en: "change into", vi: "thay (quần áo)" }] },
+            { vi: "Tôi ăn sáng.", en_best: "I eat breakfast.", phrases: [{ en: "eat breakfast", vi: "ăn sáng" }] },
+            { vi: "Tôi uống một cốc sữa.", en_best: "I drink a glass of milk.", phrases: [{ en: "glass of milk", vi: "cốc sữa" }] },
+            { vi: "Tôi kiểm tra điện thoại.", en_best: "I check my phone.", phrases: [{ en: "check phone", vi: "kiểm tra điện thoại" }] },
+            { vi: "Tôi trả lời tin nhắn của bạn.", en_best: "I reply to my friend's message.", phrases: [{ en: "reply", vi: "trả lời" }, { en: "message", vi: "tin nhắn" }] },
+            { vi: "Tôi chuẩn bị đi học.", en_best: "I get ready for school.", phrases: [{ en: "get ready", vi: "chuẩn bị" }, { en: "for school", vi: "để đi học" }] },
+            { vi: "Tôi mang theo ba lô.", en_best: "I bring my backpack.", phrases: [{ en: "bring", vi: "mang theo" }] },
+            { vi: "Tôi khóa cửa nhà.", en_best: "I lock the house door.", phrases: [{ en: "lock", vi: "khóa" }, { en: "door", vi: "cửa" }] },
+            { vi: "Tôi bước ra ngoài.", en_best: "I step outside.", phrases: [{ en: "step outside", vi: "bước ra ngoài" }] },
+            { vi: "Tôi chào hàng xóm.", en_best: "I greet the neighbors.", phrases: [{ en: "greet", vi: "chào hỏi" }, { en: "neighbors", vi: "hàng xóm" }] },
+            { vi: "Tôi đi ra bến xe buýt.", en_best: "I go to the bus stop.", phrases: [{ en: "bus stop", vi: "điểm dừng xe buýt" }] },
+            { vi: "Tôi đứng chờ xe.", en_best: "I stand and wait for the bus.", phrases: [{ en: "wait", vi: "chờ đợi" }] },
+            { vi: "Tôi nhìn đồng hồ lần nữa.", en_best: "I look at my watch again.", phrases: [{ en: "again", vi: "lại một lần nữa" }] },
+            { vi: "Xe buýt đến đúng giờ.", en_best: "The bus arrives on time.", phrases: [{ en: "arrives", vi: "đến nơi" }, { en: "on time", vi: "đúng giờ" }] },
+            { vi: "Tôi lên xe.", en_best: "I get on the bus.", phrases: [{ en: "get on", vi: "lên xe" }] },
+            { vi: "Tôi tìm chỗ ngồi.", en_best: "I find a seat.", phrases: [{ en: "find a seat", vi: "tìm chỗ ngồi" }] },
+            { vi: "Tôi nghe nhạc.", en_best: "I listen to music.", phrases: [{ en: "listen", vi: "lắng nghe" }] },
+            { vi: "Tôi cảm thấy sẵn sàng cho ngày mới.", en_best: "I feel ready for the new day.", phrases: [{ en: "ready", vi: "sẵn sàng" }, { en: "new day", vi: "ngày mới" }] },
+            { vi: "Tôi mỉm cười.", en_best: "I smile.", phrases: [{ en: "smile", vi: "mỉm cười" }] }
+        ]
+    },
+    {
+        id: 3,
+        title: "1 – BÀI 3",
+        category: "1",
+        categoryId: "topic1",
+        filterTopic: "1",
+        preview: "Tôi sống cùng gia đình. Gia đình tôi có bốn người. Bố tôi rất chăm chỉ. Mẹ tôi rất hiền. Anh trai tôi thích chơi thể thao...",
+        isNew: true,
+        attempts: 0,
+        data: [
+            { vi: "Tôi sống cùng gia đình.", en_best: "I live with my family.", phrases: [{ en: "live with", vi: "sống cùng" }, { en: "family", vi: "gia đình" }] },
+            { vi: "Gia đình tôi có bốn người.", en_best: "There are four people in my family.", phrases: [{ en: "four people", vi: "bốn người" }] },
+            { vi: "Bố tôi rất chăm chỉ.", en_best: "My father is very hardworking.", phrases: [{ en: "hardworking", vi: "chăm chỉ" }] },
+            { vi: "Mẹ tôi rất hiền.", en_best: "My mother is very gentle.", phrases: [{ en: "gentle", vi: "hiền lành/dịu dàng" }] },
+            { vi: "Anh trai tôi thích chơi thể thao.", en_best: "My older brother likes to play sports.", phrases: [{ en: "older brother", vi: "anh trai" }, { en: "play sports", vi: "chơi thể thao" }] },
+            { vi: "Tôi yêu gia đình mình.", en_best: "I love my family.", phrases: [{ en: "love", vi: "yêu thương" }] },
+            { vi: "Chúng tôi ăn sáng cùng nhau.", en_best: "We eat breakfast together.", phrases: [{ en: "together", vi: "cùng nhau" }] },
+            { vi: "Chúng tôi nói chuyện vào buổi tối.", en_best: "We talk in the evening.", phrases: [{ en: "talk", vi: "nói chuyện" }, { en: "evening", vi: "buổi tối" }] },
+            { vi: "Tôi giúp mẹ rửa bát.", en_best: "I help my mom wash the dishes.", phrases: [{ en: "wash the dishes", vi: "rửa bát" }] },
+            { vi: "Bố tôi thường nấu ăn cuối tuần.", en_best: "My dad usually cooks on the weekend.", phrases: [{ en: "on the weekend", vi: "vào cuối tuần" }] },
+            { vi: "Chúng tôi xem phim cùng nhau.", en_best: "We watch movies together.", phrases: [{ en: "watch movies", vi: "xem phim" }] },
+            { vi: "Chúng tôi cười rất nhiều.", en_best: "We laugh a lot.", phrases: [{ en: "laugh a lot", vi: "cười rất nhiều" }] },
+            { vi: "Tôi cảm thấy hạnh phúc khi ở nhà.", en_best: "I feel happy when I am at home.", phrases: [{ en: "at home", vi: "ở nhà" }] },
+            { vi: "Mẹ tôi hỏi về ngày của tôi.", en_best: "My mom asks about my day.", phrases: [{ en: "ask about", vi: "hỏi về" }] },
+            { vi: "Tôi kể cho mẹ nghe mọi chuyện.", en_best: "I tell my mom everything.", phrases: [{ en: "tell", vi: "kể cho nghe" }, { en: "everything", vi: "mọi chuyện" }] },
+            { vi: "Bố tôi cho tôi lời khuyên.", en_best: "My dad gives me advice.", phrases: [{ en: "gives advice", vi: "cho lời khuyên" }] },
+            { vi: "Anh trai tôi giúp tôi học Toán.", en_best: "My older brother helps me study math.", phrases: [{ en: "study math", vi: "học toán" }] },
+            { vi: "Tôi giúp anh trai học tiếng Anh.", en_best: "I help my brother study English.", phrases: [{ en: "study English", vi: "học tiếng anh" }] },
+            { vi: "Chúng tôi tôn trọng nhau.", en_best: "We respect each other.", phrases: [{ en: "respect", vi: "tôn trọng" }, { en: "each other", vi: "lẫn nhau" }] },
+            { vi: "Chúng tôi luôn ủng hộ nhau.", en_best: "We always support each other.", phrases: [{ en: "always support", vi: "luôn ủng hộ" }] },
+            { vi: "Gia đình tôi thích đi du lịch.", en_best: "My family likes to travel.", phrases: [{ en: "travel", vi: "đi du lịch" }] },
+            { vi: "Chúng tôi đi biển vào mùa hè.", en_best: "We go to the beach in the summer.", phrases: [{ en: "go to the beach", vi: "đi biển" }, { en: "summer", vi: "mùa hè" }] },
+            { vi: "Chúng tôi chụp nhiều ảnh.", en_best: "We take many photos.", phrases: [{ en: "take many photos", vi: "chụp nhiều ảnh" }] },
+            { vi: "Chúng tôi ăn tối ở nhà hàng.", en_best: "We eat dinner at a restaurant.", phrases: [{ en: "restaurant", vi: "nhà hàng" }] },
+            { vi: "Tôi nhớ những chuyến đi đó.", en_best: "I remember those trips.", phrases: [{ en: "remember", vi: "nhớ" }, { en: "trips", vi: "những chuyến đi" }] },
+            { vi: "Cuối tuần chúng tôi dọn dẹp nhà cửa.", en_best: "On the weekend we clean the house.", phrases: [{ en: "clean the house", vi: "dọn dẹp nhà cửa" }] },
+            { vi: "Tôi lau bàn.", en_best: "I wipe the table.", phrases: [{ en: "wipe the table", vi: "lau bàn" }] },
+            { vi: "Anh trai tôi quét nhà.", en_best: "My brother sweeps the floor.", phrases: [{ en: "sweeps the floor", vi: "quét nhà/sàn nhà" }] },
+            { vi: "Mẹ tôi nấu ăn.", en_best: "My mother cooks.", phrases: [{ en: "cook", vi: "nấu ăn" }] },
+            { vi: "Bố tôi sửa đồ trong nhà.", en_best: "My dad fixes things around the house.", phrases: [{ en: "fixes things", vi: "sửa đồ" }] },
+            { vi: "Chúng tôi làm việc cùng nhau.", en_best: "We work together.", phrases: [{ en: "work together", vi: "làm việc cùng nhau" }] },
+            { vi: "Sau đó chúng tôi nghỉ ngơi.", en_best: "Then we rest.", phrases: [{ en: "rest", vi: "nghỉ ngơi" }] },
+            { vi: "Chúng tôi uống trà.", en_best: "We drink tea.", phrases: [{ en: "drink tea", vi: "uống trà" }] },
+            { vi: "Chúng tôi nói về tương lai.", en_best: "We talk about the future.", phrases: [{ en: "talk about", vi: "nói về" }, { en: "future", vi: "tương lai" }] },
+            { vi: "Tôi muốn làm gia đình tự hào.", en_best: "I want to make my family proud.", phrases: [{ en: "proud of", vi: "ngoài hào về" }] },
+            { vi: "Tôi cố gắng học chăm chỉ.", en_best: "I try to study hard.", phrases: [{ en: "try to", vi: "cố gắng" }, { en: "study hard", vi: "học chăm chỉ" }] },
+            { vi: "Gia đình là điều quan trọng nhất với tôi.", en_best: "Family is the most important thing to me.", phrases: [{ en: "important", vi: "quan trọng" }] },
+            { vi: "Tôi luôn biết ơn bố mẹ.", en_best: "I am always grateful to my parents.", phrases: [{ en: "grateful", vi: "biết ơn" }, { en: "parents", vi: "bố mẹ" }] },
+            { vi: "Tôi cảm thấy may mắn.", en_best: "I feel lucky.", phrases: [{ en: "lucky", vi: "may mắn" }] },
+            { vi: "Tôi yêu gia đình của mình.", en_best: "I love my family.", phrases: [{ en: "love", vi: "yêu thương" }] },
+            { vi: "Gia đình cho tôi sức mạnh.", en_best: "Family gives me strength.", phrases: [{ en: "strength", vi: "sức mạnh" }] },
+            { vi: "Gia đình giúp tôi trưởng thành.", en_best: "Family helps me grow up.", phrases: [{ en: "grow up", vi: "trưởng thành" }] },
+            { vi: "Gia đình là nơi tôi thuộc về.", en_best: "Family is where I belong.", phrases: [{ en: "where I belong", vi: "nơi tôi thuộc về" }] },
+            { vi: "Tôi luôn muốn về nhà sau một ngày dài.", en_best: "I always want to come home after a long day.", phrases: [{ en: "long day", vi: "ngày dài" }] },
+            { vi: "Tôi cảm thấy an toàn ở nhà.", en_best: "I feel safe at home.", phrases: [{ en: "safe", vi: "an toàn" }] },
+            { vi: "Gia đình làm tôi mỉm cười.", en_best: "My family makes me smile.", phrases: [{ en: "make smile", vi: "làm mỉm cười" }] },
+            { vi: "Tôi trân trọng từng khoảnh khắc.", en_best: "I cherish every moment.", phrases: [{ en: "cherish", vi: "trân trọng" }, { en: "every moment", vi: "từng khoảnh khắc" }] },
+            { vi: "Tôi muốn dành nhiều thời gian với gia đình.", en_best: "I want to spend more time with my family.", phrases: [{ en: "spend time", vi: "dành thời gian" }] },
+            { vi: "Gia đình là điều quý giá.", en_best: "Family is a precious thing.", phrases: [{ en: "precious", vi: "quý giá" }] },
+            { vi: "Tôi sẽ luôn yêu gia đình mình.", en_best: "I will always love my family.", phrases: [{ en: "always", vi: "luôn luôn" }] }
+        ]
+    }
+];
+
+
+        // ============================================
+        // PUTER AI FEEDBACK
+        // ============================================
+        async function callAI(prompt) {
+            const response = await puter.ai.chat(prompt, { model: 'claude-sonnet-4-5' });
+            return typeof response === 'string' ? response : (response?.message?.content?.[0]?.text || response?.toString() || '');
+        }
+
+        // ============================================
+        // NOTES - Puter KV Storage
+        // ============================================
+        let userNotes = [];
+
+        const persistNotes = async () => {
+            await puter.kv.set('user_notes', JSON.stringify(userNotes));
+        };
+
+        const loadNotesFromPuter = async () => {
+            try {
+                const saved = await puter.kv.get('user_notes');
+                if (saved) {
+                    userNotes = JSON.parse(saved);
+                } else {
+                    userNotes = [{ id: "note-1", title: "Hello Note", content: "This is a sample note.", updatedAt: new Date().toISOString() }];
+                }
+            } catch(e) {
+                userNotes = [];
+            }
+        };
+
+        let storyData = [];
+        let currentIndex = 0;
+        let currentTab = 'practice';
+        let currentNoteId = null;
+        let noteToDelete = null;
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        window.switchTab = async (tab) => {
+
+            currentTab = tab;
+
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.getElementById('practiceTab').style.display = 'none';
+            document.getElementById('notesContent').style.display = 'none';
+
+            if (tab === 'practice') {
+                document.getElementById('practiceTab').style.display = 'grid';
+            } else if (tab === 'notes') {
+                document.getElementById('notesContent').style.display = 'block';
+                await loadNotesList();
+            }
+        };
+
+        // ============================================
+        // NOTES
+        // ============================================
+        async function loadNotesList() {
+            await loadNotesFromPuter();
+            const container = document.getElementById('notesList');
+
+            if (userNotes.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-sticky-note"></i>
+                        <h3>Chưa có ghi chú nào</h3>
+                        <p>Bấm '+' để tạo ghi chú đầu tiên của bạn</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = userNotes.map(note => `
+                    <div class="leaderboard-item" style="cursor: pointer; margin-bottom: 12px; position: relative;" onclick="editNote('${note.id}')">
+                        <div class="rank rank-other" style="min-width: 40px; height: 40px;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">${note.title}</div>
+                            <div class="leaderboard-stats">${new Date(note.updatedAt).toLocaleDateString()}</div>
+                        </div>
+                        <button onclick="event.stopPropagation(); deleteNotePrompt('${note.id}')" 
+                                style="background: transparent; border: none; color: var(--error-color); cursor: pointer; padding: 8px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('notesListView').style.display = 'block';
+            document.getElementById('notesEditorView').style.display = 'none';
+        }
+
+        window.createNewNote = () => {
+            currentNoteId = null;
+            document.getElementById('noteTitle').value = '';
+            document.getElementById('notesTextarea').value = '';
+            document.getElementById('editorTitle').textContent = 'Ghi chú mới';
+
+            document.getElementById('notesListView').style.display = 'none';
+            document.getElementById('notesEditorView').style.display = 'block';
+
+            updateCharCount();
+        };
+
+        window.editNote = (noteId) => {
+            const note = userNotes.find(n => n.id === noteId);
+            if (!note) return;
+
+            currentNoteId = noteId;
+            document.getElementById('noteTitle').value = note.title;
+            document.getElementById('notesTextarea').value = note.content;
+            document.getElementById('editorTitle').textContent = 'Sửa ghi chú';
+
+            document.getElementById('notesListView').style.display = 'none';
+            document.getElementById('notesEditorView').style.display = 'block';
+
+            updateCharCount();
+        };
+
+        window.saveNote = async () => {
+            const title = document.getElementById('noteTitle').value.trim();
+            const content = document.getElementById('notesTextarea').value.trim();
+
+            if (!title || !content) {
+                alert('Vui lòng nhập cả tiêu đề và nội dung!');
+                return;
+            }
+
+            if (currentNoteId) {
+                // Update
+                const index = userNotes.findIndex(n => n.id === currentNoteId);
+                if (index !== -1) {
+                    userNotes[index] = {
+                        ...userNotes[index],
+                        title,
+                        content,
+                        updatedAt: new Date().toISOString()
+                    };
+                }
+            } else {
+                // Create
+                const newNote = {
+                    id: 'note-' + Date.now(),
+                    title,
+                    content,
+                    updatedAt: new Date().toISOString()
+                };
+                userNotes.unshift(newNote);
+            }
+
+            persistNotes();
+            loadNotesList();
+        };
+
+        window.backToNotesList = () => {
+            loadNotesList();
+        };
+
+        window.deleteNotePrompt = (noteId) => {
+            noteToDelete = noteId;
+            document.getElementById('confirmModal').style.display = 'flex';
+        };
+
+        window.closeConfirmModal = () => {
+            document.getElementById('confirmModal').style.display = 'none';
+            noteToDelete = null;
+        };
+
+        window.confirmDeleteNote = async () => {
+            if (noteToDelete) {
+                userNotes = userNotes.filter(n => n.id !== noteToDelete);
+                persistNotes();
+                loadNotesList();
+                closeConfirmModal();
+            }
+        };
+
+        function updateCharCount() {
+            const textarea = document.getElementById('notesTextarea');
+            const charCount = document.getElementById('charCount');
+            const currentLength = textarea.value.length;
+
+            charCount.textContent = `${currentLength} / 2000`;
+
+            charCount.classList.remove('warning', 'error');
+            if (currentLength > 1800) {
+                charCount.classList.add('error');
+            } else if (currentLength > 1500) {
+                charCount.classList.add('warning');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const notesTextarea = document.getElementById('notesTextarea');
+            if (notesTextarea) {
+                notesTextarea.addEventListener('input', updateCharCount);
+            }
+        });
+
+        // ============================================
+        // LESSON LOADING
+        // ============================================
+        let currentPage = 1;
+        const itemsPerPage = 6;
+        let filteredLessons = [...LESSON_DATABASE];
+
+        function renderLessonMenu() {
+            const container = document.getElementById('lessonList');
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const lessonsToShow = filteredLessons.slice(start, end);
+
+            container.innerHTML = lessonsToShow.map(lesson => `
+                <div class="lesson-card">
+                    <div class="lesson-card-header">
+                        <div class="lesson-card-title">${lesson.title}</div>
+                    </div>
+                    <div class="lesson-preview">${lesson.preview}</div>
+                    <div class="lesson-card-footer">
+                        <div class="lesson-meta">
+                            <span>${lesson.category}</span>
+                        </div>
+                        <button class="btn-start-exercise" onclick="loadLesson(${lesson.id})">
+                            Start Exercise
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const totalItems = filteredLessons.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const start = (currentPage - 1) * itemsPerPage + 1;
+            const end = Math.min(currentPage * itemsPerPage, totalItems);
+
+            document.getElementById('displayRange').textContent = `${start}-${end}`;
+            document.getElementById('totalItems').textContent = totalItems;
+
+            // Page numbers
+            const pageNumbersContainer = document.getElementById('pageNumbers');
+            let pageButtons = '';
+
+            for (let i = 1; i <= Math.min(5, totalPages); i++) {
+                if (i === currentPage) {
+                    pageButtons += `<button class="pagination-btn active">${i}</button>`;
+                } else {
+                    pageButtons += `<button class="pagination-btn" onclick="goToPage(${i})">${i}</button>`;
+                }
+            }
+
+            if (totalPages > 5) {
+                pageButtons += `<span style="color: var(--text-secondary); padding: 0 8px;">...</span>`;
+                pageButtons += `<button class="pagination-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+            }
+
+            pageNumbersContainer.innerHTML = pageButtons;
+
+            // Prev/Next buttons
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+
+            if (currentPage === 1) {
+                prevBtn.classList.add('disabled');
+                prevBtn.onclick = null;
+            } else {
+                prevBtn.classList.remove('disabled');
+                prevBtn.onclick = () => goToPage(currentPage - 1);
+            }
+
+            if (currentPage === totalPages) {
+                nextBtn.classList.add('disabled');
+                nextBtn.onclick = null;
+            } else {
+                nextBtn.classList.remove('disabled');
+                nextBtn.onclick = () => goToPage(currentPage + 1);
+            }
+        }
+
+        window.goToPage = (page) => {
+            currentPage = page;
+            renderLessonMenu();
+        };
+
+        // Filter by topic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterSelect = document.getElementById('topicFilter');
+            if (filterSelect) {
+                filterSelect.addEventListener('change', (e) => {
+                    const selectedTopic = e.target.value;
+                    if (selectedTopic === 'all') {
+                        filteredLessons = [...LESSON_DATABASE];
+                    } else {
+                        filteredLessons = LESSON_DATABASE.filter(lesson =>
+                            lesson.filterTopic === selectedTopic
+                        );
+                    }
+                    currentPage = 1;
+                    renderLessonMenu();
+                });
+            }
+        });
+
+        window.loadLesson = (lessonId) => {
+            const lesson = LESSON_DATABASE.find(l => l.id === lessonId);
+            if (!lesson) {
+                alert("❌ Không tìm thấy bài học!");
+                return;
+            }
+
+            // Convert data format from {vi, en_best, phrases} to {vi, en_best, phrase_breakdown}
+            storyData = lesson.data.map(item => ({
+                vi: item.vi,
+                en_best: item.en_best,
+                phrase_breakdown: item.phrases.map(p => ({
+                    phrase: p.en,
+                    meaning: p.vi
+                }))
+            }));
+
+            currentIndex = 0;
+
+            // Hide menu, show practice area
+            document.getElementById('lessonMenuContainer').style.display = 'none';
+            document.getElementById('storyContainer').style.display = 'block';
+            document.getElementById('btnBackToMenu').style.display = 'inline-flex';
+
+            // Show practice elements
+            document.getElementById('userInput').style.display = 'block';
+            document.getElementById('practiceControls').style.display = 'flex';
+            document.getElementById('practiceProgress').style.display = 'block';
+            document.getElementById('feedbackPanel').style.display = 'block';
+
+            renderStoryUI();
+        };
+
+        window.showLessonMenu = () => {
+            document.getElementById('lessonMenuContainer').style.display = 'block';
+            document.getElementById('storyContainer').style.display = 'none';
+            document.getElementById('btnBackToMenu').style.display = 'none';
+
+            // Hide practice elements
+            document.getElementById('userInput').style.display = 'none';
+            document.getElementById('practiceControls').style.display = 'none';
+            document.getElementById('practiceProgress').style.display = 'none';
+
+            // Reset practice area
+            storyData = [];
+            currentIndex = 0;
+            document.getElementById('userInput').value = '';
+            document.getElementById('userInput').disabled = true;
+            document.getElementById('btnCheck').style.display = 'none';
+            document.getElementById('btnPrevious').style.display = 'none';
+            document.getElementById('btnBack').style.display = 'none';
+            document.getElementById('btnStartOver').style.display = 'flex';
+            document.getElementById('btnRetry').style.display = 'none';
+            document.getElementById('btnNext').style.display = 'none';
+            document.getElementById('feedbackBox').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Check your answer</h3>
+                    <p>Submit your translation to see feedback</p>
+                </div>
+            `;
+        };
+
+        function renderStoryUI() {
+            const container = document.getElementById('storyContainer');
+
+            // Bước 1: Build đoạn văn thuần - câu đã xong dùng tiếng Anh, chưa xong dùng tiếng Việt
+            let fullText = storyData.map((item, index) => {
+                return index < currentIndex ? item.en_best : item.vi;
+            }).join(' ');
+
+            // Bước 2: Highlight câu active - tìm vị trí cuối cùng của câu trong text
+            const activeText = currentIndex < storyData.length
+                ? (currentIndex < currentIndex ? storyData[currentIndex].en_best : storyData[currentIndex].vi)
+                : null;
+
+            // Bước 3: Wrap câu done bằng span trắng đậm, câu pending xám mờ
+            // Làm theo đúng cách web gốc: để nguyên text, chỉ wrap span cho câu active
+            let html = storyData.map((item, index) => {
+                const text = index < currentIndex ? item.en_best : item.vi;
+                const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                if (index < currentIndex) {
+                    return `<span style="color:var(--text-primary);font-weight:600">${safe}</span>`;
+                } else if (index === currentIndex) {
+                    return `<span style="color:#ff6b9d;font-weight:600">${safe}</span>`;
+                } else {
+                    return `<span style="color:var(--text-secondary);opacity:0.5">${safe}</span>`;
+                }
+            }).join(' ');
+
+            container.innerHTML = html;
+
+            document.getElementById('userInput').value = '';
+            document.getElementById('userInput').disabled = false;
+            document.getElementById('userInput').focus();
+            document.getElementById('btnCheck').style.display = 'flex';
+            document.getElementById('btnBack').style.display = 'none';
+            document.getElementById('btnStartOver').style.display = 'flex';
+            document.getElementById('btnRetry').style.display = 'none';
+            document.getElementById('btnNext').style.display = 'none';
+
+            // Show/hide Previous button based on current index
+            if (currentIndex > 0) {
+                document.getElementById('btnPrevious').style.display = 'flex';
+            } else {
+                document.getElementById('btnPrevious').style.display = 'none';
+            }
+
+            // Hide feedback when moving to new sentence
+            document.getElementById('feedbackBox').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Check your answer</h3>
+                    <p>Submit your translation to see feedback</p>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            document.getElementById('currentStep').innerText = currentIndex + 1;
+            document.getElementById('totalSteps').innerText = storyData.length;
+            document.getElementById('progressFill').style.width =
+                `${(currentIndex / storyData.length) * 100}%`;
+        }
+
+        window.checkCurrentSentence = async () => {
+            const currentData = storyData[currentIndex];
+            const userAnswer = document.getElementById('userInput').value.trim();
+
+            const normalizeText = (text) => {
+                return text.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+            };
+
+            const isCorrect = normalizeText(userAnswer) === normalizeText(currentData.en_best);
+
+            // Show loading state
+            document.getElementById('feedbackBox').innerHTML = `
+                <div style="text-align:center; padding: 40px; color: var(--text-secondary);">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--text-highlight); margin-bottom: 16px; display: block;"></i>
+                    <p>AI đang phân tích câu của bạn...</p>
+                </div>
+            `;
+            document.getElementById('btnCheck').style.display = 'none';
+
+            // Call AI for phrase breakdown
+            let phrasesHTML = '';
+            let tipHTML = '';
+            try {
+                const prompt = `Bạn là giáo viên tiếng Anh. Hãy phân tích câu tiếng Anh sau và trả lời theo đúng định dạng JSON này (chỉ JSON, không giải thích thêm):
+{
+  "phrases": [
+    {"phrase": "cụm từ tiếng Anh", "meaning": "nghĩa tiếng Việt", "note": "ghi chú ngữ pháp hoặc mẹo nhớ ngắn gọn"}
+  ],
+  "tip": "1 mẹo học hoặc nhận xét tổng quan về câu này bằng tiếng Việt"
+}
+
+Câu cần phân tích: "${currentData.en_best}"
+Câu tiếng Việt tương ứng: "${currentData.vi}"`;
+
+                const aiRaw = await callAI(prompt);
+                const jsonMatch = aiRaw.match(/\{[\s\S]*\}/);
+                const aiData = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+
+                if (aiData && aiData.phrases) {
+                    phrasesHTML = aiData.phrases.map(item => `
+                        <div style="padding: 12px 0; border-bottom: 1px solid var(--border-color);">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                                <div style="font-weight: 500; font-size: 1rem;">
+                                    <span style="color: #34d399; font-weight: 600;">${item.phrase}</span>
+                                    <span style="color: var(--text-secondary);"> — </span>
+                                    <span style="color: #c4b5fd;">${item.meaning}</span>
+                                </div>
+                                <button onclick="speakPhrase('${item.phrase.replace(/'/g, "\\'")}')"
+                                        style="background: var(--bg-hover); border: none; color: var(--text-highlight); padding: 8px; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s;"
+                                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                            ${item.note ? `<div style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 4px;">💡 ${item.note}</div>` : ''}
+                        </div>
+                    `).join('');
+
+                    if (aiData.tip) {
+                        tipHTML = `
+                            <div style="margin-top: 16px; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); border-radius: 10px; padding: 14px;">
+                                <div style="color: var(--text-highlight); font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">
+                                    <i class="fas fa-lightbulb"></i> Mẹo học
+                                </div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">${aiData.tip}</div>
+                            </div>
+                        `;
+                    }
+                }
+            } catch(e) {
+                // Fallback to static phrases if AI fails
+                phrasesHTML = (currentData.phrases || []).map(item => `
+                    <div style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                        <div style="font-weight: 500;">
+                            <span style="color: #34d399; font-weight: 600;">${item.en}</span>
+                            <span style="color: var(--text-secondary);"> — </span>
+                            <span style="color: #c4b5fd;">${item.vi}</span>
+                        </div>
+                        <button onclick="speakPhrase('${item.en.replace(/'/g, "\\'")}')"
+                                style="background: var(--bg-hover); border: none; color: var(--text-highlight); padding: 8px; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const phrasesSection = `
+                <div style="color: var(--text-highlight); font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-brain"></i> Phân tích AI:
+                </div>
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
+                    ${phrasesHTML}
+                </div>
+                ${tipHTML}
+            `;
+
+            let feedbackHTML = '';
+            if (isCorrect) {
+                feedbackHTML = `
+                    <div>
+                        <div style="color: #34d399; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-check-circle"></i> Correct!
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px; margin-bottom: 16px; border: 2px solid #34d399; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                            <div style="color: #34d399; font-size: 1.2rem; font-weight: 600;">${currentData.en_best}</div>
+                            <button onclick="speakPhrase('${currentData.en_best.replace(/'/g, "\\'")}')"
+                                    style="background: #34d399; border: none; color: #0a0e1a; padding: 10px; border-radius: 50%; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;"
+                                    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                <i class="fas fa-volume-up" style="font-size: 1.2rem;"></i>
+                            </button>
+                        </div>
+                        ${phrasesSection}
+                    </div>
+                `;
+            } else {
+                feedbackHTML = `
+                    <div>
+                        <div style="color: #ef4444; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-times-circle"></i> Incorrect - Try Again
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px; margin-bottom: 16px; border: 2px solid #ef4444;">
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Your answer:</div>
+                            <div style="color: #ef4444; font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">${userAnswer || '(empty)'}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Correct answer:</div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                                <div style="color: #34d399; font-size: 1.1rem; font-weight: 600;">${currentData.en_best}</div>
+                                <button onclick="speakPhrase('${currentData.en_best.replace(/'/g, "\\'")}')"
+                                        style="background: #34d399; border: none; color: #0a0e1a; padding: 10px; border-radius: 50%; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;"
+                                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fas fa-volume-up" style="font-size: 1.1rem;"></i>
+                                </button>
+                            </div>
+                        </div>
+                        ${phrasesSection}
+                    </div>
+                `;
+            }
+
+            document.getElementById('feedbackBox').innerHTML = feedbackHTML;
+            document.getElementById('btnPrevious').style.display = 'none';
+            document.getElementById('btnBack').style.display = 'flex';
+            document.getElementById('btnStartOver').style.display = 'flex';
+            document.getElementById('btnRetry').style.display = 'flex';
+
+            if (isCorrect) {
+                document.getElementById('btnNext').style.display = 'flex';
+            } else {
+                document.getElementById('btnNext').style.display = 'none';
+            }
+
+            document.getElementById('userInput').disabled = true;
+        };
+
+        // Hàm để chọn giọng English US xịn nhất
+        const setBestEnVoice = (utterance) => {
+            let voices = window.speechSynthesis.getVoices();
+
+            // 1. Lọc các giọng English US (en-US)
+            let enUSVoices = voices.filter(voice => voice.lang === 'en-US' || voice.lang === 'en_US');
+
+            // 2. Tìm kiếm theo thứ tự ưu tiên: 
+            // Ưu tiên 1: Giọng "Natural" (Edge) - Nghe như người thật
+            // Ưu tiên 2: Giọng "Google" (Chrome) - Rất chuẩn
+            // Ưu tiên 3: Giọng "Samantha" (macOS/iOS) - Giọng huyền thoại rất dễ nghe
+            let bestVoice = enUSVoices.find(v => v.name.includes('Natural')) ||
+                enUSVoices.find(v => v.name.includes('Google')) ||
+                enUSVoices.find(v => v.name.includes('Samantha')) ||
+                enUSVoices[0];
+
+            if (bestVoice) {
+                utterance.voice = bestVoice;
+                console.log("Đã chọn giọng:", bestVoice.name);
+            }
+        };
+
+        // Text-to-Speech function for phrases
+        window.speakPhrase = (phrase) => {
+            const cleanPhrase = phrase.trim();
+            if (!cleanPhrase) return;
+
+            // Stop any current speaking
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+            }
+
+            const utterance = new SpeechSynthesisUtterance(cleanPhrase);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Giảm nhẹ tốc độ xuống 0.9 nghe sẽ sang và rõ hơn
+
+            // Áp dụng giọng đọc xịn nhất
+            setBestEnVoice(utterance);
+
+            // Một số trình duyệt yêu cầu tương tác người dùng, 
+            // nhưng vì đây là phản hồi cho nút bấm nên sẽ hoạt động tốt.
+            window.speechSynthesis.speak(utterance);
+        };
+
+        // Đảm bảo voices được load (một số trình duyệt cần cái này)
+        window.speechSynthesis.onvoiceschanged = () => {
+            console.log("Voices loaded/changed");
+        };
+
+        window.retrySentence = () => {
+            document.getElementById('userInput').value = '';
+            document.getElementById('userInput').disabled = false;
+            document.getElementById('userInput').focus();
+            document.getElementById('btnCheck').style.display = 'flex';
+            document.getElementById('btnBack').style.display = 'none';
+            document.getElementById('btnStartOver').style.display = 'flex';
+            document.getElementById('btnRetry').style.display = 'none';
+            document.getElementById('btnNext').style.display = 'none';
+
+            // Reset feedback to empty state
+            document.getElementById('feedbackBox').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Check your answer</h3>
+                    <p>Submit your translation to see feedback</p>
+                </div>
+            `;
+        };
+
+        window.startOver = () => {
+            currentIndex = 0;
+            renderStoryUI();
+        };
+
+        window.skipSentence = () => {
+            if (currentIndex < storyData.length - 1) {
+                currentIndex++;
+                renderStoryUI();
+            } else {
+                alert("🎉 Bạn đã hoàn thành tất cả các câu!");
+            }
+        };
+
+        window.previousSentence = () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderStoryUI();
+            }
+        };
+
+        window.nextSentence = async () => {
+            if (currentIndex < storyData.length - 1) {
+                currentIndex++;
+                renderStoryUI();
+            } else {
+                alert("🎉 CONGRATULATIONS!");
+                document.getElementById('progressFill').style.width = '100%';
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLessonMenu();
+        });
+    </script>
+</body>
+
+</html>
