@@ -308,7 +308,7 @@
             background: var(--bg-secondary);
             border-radius: 10px;
             min-height: 120px;
-            white-space: pre-wrap;
+            word-break: break-word;
             word-wrap: break-word;
         }
 
@@ -469,7 +469,9 @@
             font-weight: 600;
             color: var(--accent-blue);
             font-size: 1.05rem;
-        }/* ==================== EMPTY STATES ==================== */
+        }
+
+        /* ==================== EMPTY STATES ==================== */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -1599,36 +1601,36 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 
     <script src="https://js.puter.com/v2/"></script>
 
     <script>
-const SUPABASE_URL = "https://zmbcnvkbdrrbymldgbes.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptYmNudmtiZHJyYnltbGRnYmVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDIzMjMsImV4cCI6MjA4NzQ3ODMyM30.mFOhCHfQ9TN_FDWEpBGS4sJ9S6HJMXaUdkVcv5oOMIA";
+        const SUPABASE_URL = "https://zmbcnvkbdrrbymldgbes.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptYmNudmtiZHJyYnltbGRnYmVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDIzMjMsImV4cCI6MjA4NzQ3ODMyM30.mFOhCHfQ9TN_FDWEpBGS4sJ9S6HJMXaUdkVcv5oOMIA";
 
-async function fetchLessons() {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/lessons?select=*&order=id`, {
-        headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": "Bearer " + SUPABASE_KEY
+        async function fetchLessons() {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/lessons?select=*&order=id`, {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": "Bearer " + SUPABASE_KEY
+                }
+            });
+            return await res.json();
         }
-    });
-    return await res.json();
-}
 
-async function fetchSentences(lessonId) {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/sentences?lesson_id=eq.${lessonId}&order=position`, {
-        headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": "Bearer " + SUPABASE_KEY
+        async function fetchSentences(lessonId) {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/sentences?lesson_id=eq.${lessonId}&order=position`, {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": "Bearer " + SUPABASE_KEY
+                }
+            });
+            return await res.json();
         }
-    });
-    return await res.json();
-}
 
-let LESSON_DATABASE = [];
+        let LESSON_DATABASE = [];
 
 
         // ============================================
@@ -1657,7 +1659,7 @@ let LESSON_DATABASE = [];
             event.target.classList.add('active');
 
             document.getElementById('practiceTab').style.display = 'none';
-            
+
             if (tab === 'practice') {
                 document.getElementById('practiceTab').style.display = 'grid';
             }
@@ -1785,7 +1787,7 @@ let LESSON_DATABASE = [];
                     en_best: s.en_best,
                     phrase_breakdown: []
                 }));
-            } catch(e) {
+            } catch (e) {
                 console.error('Lỗi load sentences:', e);
                 storyData = [];
             }
@@ -1853,9 +1855,11 @@ let LESSON_DATABASE = [];
                     cls = 'sentence pending';
                     text = item.vi;
                 }
-                const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-                return `<span class="${cls}">${safe}</span>`;
-            }).join(' ');
+                const safe = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                // Space nằm TRONG span (trừ câu đầu) để dấu câu không bị tách ra ngoài
+                const prefix = index === 0 ? '' : ' ';
+                return `<span class="${cls}">${prefix}${safe}</span>`;
+            }).join('');
             container.innerHTML = html;
 
             // Hoàn thành tất cả câu
@@ -1968,7 +1972,7 @@ Câu tiếng Việt tương ứng: "${currentData.vi}"`;
                         `;
                     }
                 }
-            } catch(e) {
+            } catch (e) {
                 // Fallback to static phrases if AI fails
                 phrasesHTML = (currentData.phrases || []).map(item => `
                     <div style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
@@ -2161,7 +2165,7 @@ Câu tiếng Việt tương ứng: "${currentData.vi}"`;
                     data: []
                 }));
                 filteredLessons = [...LESSON_DATABASE];
-            } catch(e) {
+            } catch (e) {
                 console.error('Lỗi load lessons:', e);
             }
             renderLessonMenu();
